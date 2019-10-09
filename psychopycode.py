@@ -16,6 +16,8 @@ test_file=['/Users/lscpuser/Documents/ALSE/pilot2alex/test1c.aiff', '/Users/lscp
 
 win = visual.Window([1024, 768], mon ='SonyG500')
 
+
+#####Select train files and raise RuntimeError if not
 def getfiles(path, list, list2):
   items = [f for f in os.listdir(path) if os.path.isfile( os.path.join(path, f) )]
   for item in items:
@@ -27,7 +29,6 @@ def getfiles(path, list, list2):
        raise RuntimeError("File could not be found:" + path)
    list2.append(path)
 
-#####Select train audio files and raise RuntimeError if not
 
 audio_file=list()
 sound_list=list()
