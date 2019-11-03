@@ -47,20 +47,20 @@ def trainstim(sentence, name):
   print(element)
   print(count)
   print(Atrainnamelist[count])
-  system('say -o  ~/Documents/ALSE/pilot3alex/train/{}.aiff -v  "Paulina" {}'.format(name[count], element)) 
+  system('say -o  ~/Documents/ALSE/pilot4/train/{}.aiff  {}'.format(name[count], element)) 
   count=count+1
 
 def teststim(list, name):
  count=0
  for example in list:
    #  example=stringtoPhon(example)
-   system('say -o  ~/Documents/ALSE/pilot3alex/test/{}.aiff -v  "Paulina" {}'.format(name[count],  example))
+   system('say -o  ~/Documents/ALSE/pilot4/test/{}.aiff  {}'.format(name[count],  example))
    count=count+1
    
    
    
    
-Syllables=["sa", "ku","di","pe","mo","gue","li","fu","po","na","gu","ti","lo","me","ki","do","su","ba"]
+Syllables=["dlu",  "ga",  "sin",  "blu", "ko", "dle", "ti", "man", "gle", "blo", "da", "pun", "kli", "go", "tla", "fen", "bi", "glu"]
 
 ######################PREP PHASE
 #######Group  A
@@ -90,7 +90,7 @@ AProgressiveY= str(Syllables[16])
 AProgressiveN= str(Syllables[17])
 
 #print("ANoun, AVerb, ADisrupter1, ADisrupter2, ASingularNoun, ASingularVerb, APluralNoun, APluralVerb, AProgressiveY, AProgressiveN")
-#print(ANoun, AVerb, ADisrupter1, ADisrupter2, ASingularNoun, ASingularVerb, APluralNoun, APluralVerb, AProgressiveY, AProgressiveN)
+print(ANoun, AVerb, ADisrupter1, ADisrupter2, ASingularNoun, ASingularVerb, APluralNoun, APluralVerb, AProgressiveY, AProgressiveN)
 
 ##########Group B
 
@@ -220,20 +220,27 @@ Dtrainnamelist=["Dnoun0_Singularnoun_verb0_ProgressiveY_Singularverb","Dnoun0_Pl
 
 
 
-trainstim(ASentence, Atrainnamelist)
+#trainstim(ASentence, Atrainnamelist)
+"""
 trainstim(BSentence,  Btrainnamelist)
 trainstim(CSentence,  Ctrainnamelist)
 trainstim(DSentence, Dtrainnamelist)
+"""
 
 #############TEST
 
 ##GroupA
-#verb vs non-word
+#verb vs non-verb
 Atest1c_Verb0_ProgressiveY_Pluralverb = AVerb[0] + AProgressiveY + APluralVerb
 Atest1f_Pluralnoun_Verb0_ProgressiveY = APluralNoun + AVerb[0] + AProgressiveY
 
-Atest11c_Verb3_ProgressiveN_Singularverb = AVerb[2] + AProgressiveN + ASingularVerb
-Atest11f_Pluralnoun_Verb3_ProgressiveN = APluralNoun + AVerb[2] + AProgressiveN
+Atest11c_Verb2_ProgressiveN_Singularverb = AVerb[2] + AProgressiveN + ASingularVerb
+Atest11f_Pluralnoun_Verb2_ProgressiveN = APluralNoun + AVerb[2] + AProgressiveN
+
+#Atest111c_Verb1_ProgressiveY_Singularverb = AVerb[1] + AProgressiveY + ASingularVerb
+#Atest111f_2syllOFverb1_ProgressiveY_Singularverb_Disruptor2 =  str(AVerb[1])[1:3] +  AProgressiveY + ASingularVerb + ADisrupter2[0]
+
+
 
 #noun vs non-word
 Atest2c_Noun0_Singularnoun = ANoun[0] + ASingularNoun
@@ -242,23 +249,45 @@ Atest2f_Singularnoun_Verb2_ProgressiveN = ASingularNoun+ AVerb[2] + AProgressive
 Atest22c_Noun1_Pluralnoun = ANoun[1] + APluralNoun
 Atest22f_Pluralnoun_Verb2_ProgressiveY = APluralNoun + AVerb[2] + AProgressiveY
 
-#morpheme vs non-word
+#Atest222c_Noun0_PluralNoun = ANoun[0] +  APluralNoun
+#Atest222f_Disruptor1_Noun0 = ADisrupter1[0] + ANoun[0] 
+
+
+#morpheme vs non-morpheme
 Atest3c_ProgressiveY_PluralVerb=AProgressiveY + APluralVerb
-Atest3f_Pluralnoun_1syllOFverb1=APluralNoun +  str(AVerb[1])[0:2]  #first syllable of 2 syllable  verb DOESNT WORK
+Atest3f_Pluralnoun_1syllOFverb1=APluralNoun +  str(AVerb[1])[0:3]  #first syllable of 2 syllable  verb DOESNT WORK
 
 Atest33c_ProgressiveN_SingularVerb= AProgressiveN + ASingularVerb
-Atest33f_SingularNoun_1syllOFverb0= ASingularNoun + str(AVerb[0])[0:2] #first syllable of 2 syllable  verb DOESNT WORK
+Atest33f_SingularNoun_1syllOFverb0= ASingularNoun + str(AVerb[0])[0:3] #first syllable of 2 syllable  verb DOESNT WORK
+
+Atest333c_ProgressiveY_SingularVerb = AProgressiveY + ASingularVerb
+Atest333f_2syllOFverb1_SingularVerb =   str(AVerb[1])[3:6]  + AProgressiveY 
+
+Atest3333c_ProgressiveN_PluralVerb = AProgressiveN + APluralVerb
+Atest3333f_2syllOFverb0_ProgressiveN =   str(AVerb[0])[3:5]  + AProgressiveN 
 
 #noun vs morpheme
 Atest4c_Noun2_SingularNoun=ANoun[2]  + ASingularNoun
-Atest4f_ProgressiveN_SingularVerb=AProgressiveN + ASingularVerb  
-
-Atest44c_Noun2_PluralNoun=ANoun[2] + APluralNoun
-Atest44f_ProgressiveY_PluralVerb=AProgressiveY + APluralVerb
-Atest.extend((Atest1c_Verb0_ProgressiveY_Pluralverb,Atest1f_Pluralnoun_Verb0_ProgressiveY,Atest11c_Verb3_ProgressiveN_Singularverb,Atest11f_Pluralnoun_Verb3_ProgressiveN, Atest2c_Noun0_Singularnoun, Atest2f_Singularnoun_Verb2_ProgressiveN, Atest22c_Noun1_Pluralnoun, Atest22f_Pluralnoun_Verb2_ProgressiveY, Atest3c_ProgressiveY_PluralVerb, Atest3f_Pluralnoun_1syllOFverb1, Atest33c_ProgressiveN_SingularVerb, Atest33f_SingularNoun_1syllOFverb0, Atest4c_Noun2_SingularNoun,Atest4f_ProgressiveN_SingularVerb, Atest44c_Noun2_PluralNoun, Atest44f_ProgressiveY_PluralVerb))
-Atestnamelist=("Atest1c_Verb0_ProgressiveY_Pluralverb","Atest1f_Pluralnoun_Verb0_ProgressiveY","Atest11c_Verb3_ProgressiveN_Singularverb","Atest11f_Pluralnoun_Verb3_ProgressiveN", "Atest2c_Noun0_Singularnoun", "Atest2f_Singularnoun_Verb2_ProgressiveN", "Atest22c_Noun1_Pluralnoun", "Atest22f_Pluralnoun_Verb2_ProgressiveY", "Atest3c_ProgressiveY_PluralVerb", "Atest3f_Pluralnoun_1syllOFverb1", "Atest33c_ProgressiveN_SingularVerb", "Atest33f_SingularNoun_1syllOFverb0", "Atest4c_Noun2_SingularNoun","Atest4f_ProgressiveN_SingularVerb", "Atest44c_Noun2_PluralNoun", "Atest44f_ProgressiveY_PluralVerb")
+Atest4f_ProgressiveN_SingularVerb=AProgressiveN + ASingularVerb
 
 
+Atest44c_Noun2_PluralNoun = ANoun[2] + APluralNoun
+Atest44f_ProgressiveY_PluralVerb = AProgressiveY + APluralVerb
+
+#stem vs affix
+Atest444c_ProgressiveN_PluralVerb = AProgressiveN +  APluralVerb
+Atest444f_Verb0 =  AVerb[0]
+
+
+Atest.extend((Atest1c_Verb0_ProgressiveY_Pluralverb,Atest1f_Pluralnoun_Verb0_ProgressiveY,Atest11c_Verb2_ProgressiveN_Singularverb,Atest11f_Pluralnoun_Verb2_ProgressiveN,  Atest2c_Noun0_Singularnoun, Atest2f_Singularnoun_Verb2_ProgressiveN, Atest22c_Noun1_Pluralnoun, Atest22f_Pluralnoun_Verb2_ProgressiveY, Atest3c_ProgressiveY_PluralVerb, Atest3f_Pluralnoun_1syllOFverb1, Atest33c_ProgressiveN_SingularVerb, Atest33f_SingularNoun_1syllOFverb0, Atest333c_ProgressiveY_SingularVerb, Atest333f_2syllOFverb1_SingularVerb,Atest3333c_ProgressiveN_PluralVerb, Atest3333f_2syllOFverb0_ProgressiveN ,  Atest4c_Noun2_SingularNoun,Atest4f_ProgressiveN_SingularVerb, Atest44c_Noun2_PluralNoun, Atest44f_ProgressiveY_PluralVerb, Atest444c_ProgressiveN_PluralVerb, Atest444f_Verb0))
+Atestnamelist=("Atest1c_Verb0_ProgressiveY_Pluralverb","Atest1f_Pluralnoun_Verb0_ProgressiveY","Atest11c_Verb2_ProgressiveN_Singularverb","Atest11f_Pluralnoun_Verb2_ProgressiveN","Atest2c_Noun0_Singularnoun", "Atest2f_Singularnoun_Verb2_ProgressiveN", "Atest22c_Noun1_Pluralnoun", "Atest22f_Pluralnoun_Verb2_ProgressiveY","Atest3c_ProgressiveY_PluralVerb", "Atest3f_Pluralnoun_1syllOFverb1", "Atest33c_ProgressiveN_SingularVerb", "Atest33f_SingularNoun_1syllOFverb0", "Atest333c_ProgressiveY_SingularVerb","Atest333f_2syllOFverb1_SingularVerb", "Atest3333c_ProgressiveN_PluralVerb", "Atest3333f_2syllOFverb0_ProgressiveN",   "Atest4c_Noun2_SingularNoun",   "Atest4f_ProgressiveN_SingularVerb", "Atest44c_Noun2_PluralNoun", "Atest44f_ProgressiveY_PluralVerb", "Atest444c_ProgressiveN_PluralVerb", "Atest444f_Verb0")
+
+
+
+#Atest.extend((Atest1c_Verb0_ProgressiveY_Pluralverb,Atest1f_Pluralnoun_Verb0_ProgressiveY,Atest11c_Verb2_ProgressiveN_Singularverb,Atest11f_Pluralnoun_Verb2_ProgressiveN,Atest111c_Verb1_ProgressiveY_Singularverb, Atest111f_2syllOFverb1_ProgressiveY_Singularverb_Disruptor2, Atest2c_Noun0_Singularnoun, Atest2f_Singularnoun_Verb2_ProgressiveN, Atest22c_Noun1_Pluralnoun, Atest22f_Pluralnoun_Verb2_ProgressiveY,Atest222c_Noun0_PluralNoun,Atest222f_Disruptor1_Noun0,  Atest3c_ProgressiveY_PluralVerb, Atest3f_Pluralnoun_1syllOFverb1, Atest33c_ProgressiveN_SingularVerb, Atest33f_SingularNoun_1syllOFverb0, Atest333c_ProgressiveY_SingularVerb,Atest333f_SingularVerb_Disruptor2,   Atest4c_Noun2_SingularNoun,Atest4f_ProgressiveN_SingularVerb, Atest44c_Noun2_PluralNoun, Atest44f_ProgressiveY_PluralVerb, Atest444c_ProgressiveN_PluralVerb, Atest444f_Verb0))
+#Atestnamelist=("Atest1c_Verb0_ProgressiveY_Pluralverb","Atest1f_Pluralnoun_Verb0_ProgressiveY","Atest11c_Verb2_ProgressiveN_Singularverb","Atest11f_Pluralnoun_Verb2_ProgressiveN","Atest111c_Verb1_ProgressiveY_Singularverb", "Atest111f_2syllOFverb1_ProgressiveY_Singularverb_Disruptor2", "Atest2c_Noun0_Singularnoun", "Atest2f_Singularnoun_Verb2_ProgressiveN", "Atest22c_Noun1_Pluralnoun", "Atest22f_Pluralnoun_Verb2_ProgressiveY","Atest222c_Noun0_PluralNoun","Atest222f_Disruptor1_Noun0",  "Atest3c_ProgressiveY_PluralVerb", "Atest3f_Pluralnoun_1syllOFverb1", "Atest33c_ProgressiveN_SingularVerb", "Atest33f_SingularNoun_1syllOFverb0", "Atest333c_ProgressiveY_SingularVerb","Atest333f_SingularVerb_Disruptor2",   "Atest4c_Noun2_SingularNoun",   "Atest4f_ProgressiveN_SingularVerb", "Atest44c_Noun2_PluralNoun", "Atest44f_ProgressiveY_PluralVerb", "Atest444c_ProgressiveN_PluralVerb", "Atest444f_Verb0")
+
+"""
 Btest1c_Verb0_ProgressiveY_Pluralverb = BVerb[0] + BProgressiveY + BPluralVerb
 Btest1f_Pluralnoun_Verb0_ProgressiveY = BPluralNoun + BVerb[0] + BProgressiveY
 
@@ -351,13 +380,15 @@ Dtest.extend((Dtest1c_Verb0_ProgressiveY_Pluralverb,Dtest1f_Pluralnoun_Verb0_Pro
 
 
 Dtestnamelist=("Dtest1c_Verb0_ProgressiveY_Pluralverb","Dtest1f_Pluralnoun_Verb0_ProgressiveY","Dtest11c_Verb3_ProgressiveN_Singularverb","Dtest11f_Pluralnoun_Verb3_ProgressiveN", "Dtest2c_Noun0_Singularnoun", "Dtest2f_Singularnoun_Verb2_ProgressiveN", "Dtest22c_Noun1_Pluralnoun", "Dtest22f_Pluralnoun_Verb2_ProgressiveY", "Dtest3c_ProgressiveY_PluralVerb", "Dtest3f_Pluralnoun_1syllOFverb1", "Dtest33c_ProgressiveN_SingularVerb", "Dtest33f_SingularNoun_1syllOFverb0", "Dtest4c_Noun2_SingularNoun","Dtest4f_ProgressiveN_SingularVerb", "Dtest44c_Noun2_PluralNoun", "Dtest44f_ProgressiveY_PluralVerb")
-
+"""
 teststim(Atest, Atestnamelist)
+
+"""
 teststim(Btest,  Btestnamelist)
 teststim(Ctest,  Ctestnamelist)
 teststim(Dtest,  Dtestnamelist)
 
-
+"""
 #######
 
 #######LANGUAGE

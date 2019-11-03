@@ -15,15 +15,19 @@ datafile = csv.writer(datafile, delimiter=",")
 
 
 path_test_audio="/Users/lscpuser/Documents/ALSE/pilot_test_audio/"+ str(group) + "/"
-path_train_video="/Users/lscpuser/Documents/ALSE/new/"
+path_train_video="/Users/lscpuser/Documents/ALSE/new1/" + str(group) + "/"
 path_train_audio="/Users/lscpuser/Documents/ALSE/a/"+str(group)+"/"
 
 
 
 test_1=[path_test_audio + 'Atest1c_Verb0_ProgressiveY_Pluralverb.aiff', path_test_audio + 'Atest1f_Pluralnoun_Verb0_ProgressiveY.aiff' ]
 test_2=[path_test_audio + 'Atest2c_Noun0_Singularnoun.aiff', path_test_audio + 'Atest2f_Singularnoun_Verb2_ProgressiveN.aiff' ]
-test_3=[path_test_audio + 'Atest3c_ProgressiveY_PluralVerb.aiff', path_test_audio + 'Atest3f_Pluralnoun_1syllOFverb1.aiff' ]
-
+test_3=[path_test_audio + 'Atest3f_Pluralnoun_1syllOFverb1.aiff', path_test_audio + 'Atest3c_ProgressiveY_PluralVerb.aiff' ]
+test_4=[path_test_audio +  'Atest4c_Noun2_SingularNoun.aiff', path_test_audio + 'Atest4f_ProgressiveN_SingularVerb.aiff']
+test_5=[path_test_audio + 'Atest11c_Verb3_ProgressiveN_Singularverb.aiff' , path_test_audio + 'Atest11f_Pluralnoun_Verb3_ProgressiveN.aiff']
+test_6=[path_test_audio + 'Atest22f_Pluralnoun_Verb2_ProgressiveY.aiff', path_test_audio + 'Atest22c_Noun1_Pluralnoun.aiff']
+test_7=[path_test_audio + 'Atest33c_ProgressiveN_SingularVerb.aiff', path_test_audio + 'Atest33f_SingularNoun_1syllOFverb0.aiff' ]
+test_8=[path_test_audio + 'Atest44f_ProgressiveY_PluralVerb.aiff', path_test_audio + 'Atest44c_Noun2_PluralNoun.aiff']
 
 win = visual.Window([1024, 768], mon ='SonyG500')
 
@@ -98,10 +102,15 @@ win.flip()
 core.wait(0.5)
 presstocontinue()
 
-
-for i, video in enumerate(video_list):  
+random.shuffle(video_list)
+random.shuffle(sound_list)
+for i, video in enumerate(video_list): 
+    videoname=str(video).replace("/Users/lscpuser/Documents/ALSE/new1/", "").replace(".mov","")
+    print(videoname)
     for y, audio in enumerate(sound_list):
-        if i==y:  ####match video to audio
+        audioname=str(audio).replace("/Users/lscpuser/Documents/ALSE/a/", "").replace(".aiff","")
+        print(audioname)
+        if videoname==audioname:  ####match video to audio
             presstocontinue()
             print(video,audio)
             fixation.draw()
@@ -243,6 +252,7 @@ print(clock3.getTime())
 sum=float(onset[3][0][1]) + float(onset[2])
 onset[3]=sum
 datafile.writerow([answer, onset])
+
 #present stimuli 3
 onset=[]
 question = visual.TextStim(win, text="")
@@ -264,6 +274,115 @@ sum=float(onset[3][0][1]) + float(onset[2])
 onset[3]=sum
 datafile.writerow([answer, onset])
 
+
+
+#present stimuli 4
+onset=[]
+question = visual.TextStim(win, text="")
+question.draw()
+win.flip()
+core.wait(2)
+print("start clock3")
+clock3=core.Clock()
+presentest(test_4)
+#record answer
+win.flip()
+print("clock3 after presenting and before collecting")
+onset.append(clock3.getTime())
+answer=trackanswers(test_4)
+print("clock3 after collecting")
+print(clock3.getTime())
+
+sum=float(onset[3][0][1]) + float(onset[2])
+onset[3]=sum
+datafile.writerow([answer, onset])
+
+#present stimuli 5
+onset=[]
+question = visual.TextStim(win, text="")
+question.draw()
+win.flip()
+core.wait(2)
+print("start clock3")
+clock3=core.Clock()
+presentest(test_5)
+#record answer
+win.flip()
+print("clock3 after presenting and before collecting")
+onset.append(clock3.getTime())
+answer=trackanswers(test_5)
+print("clock3 after collecting")
+print(clock3.getTime())
+
+sum=float(onset[3][0][1]) + float(onset[2])
+onset[3]=sum
+datafile.writerow([answer, onset])
+
+
+
+#present stimuli 6
+onset=[]
+question = visual.TextStim(win, text="")
+question.draw()
+win.flip()
+core.wait(2)
+print("start clock3")
+clock3=core.Clock()
+presentest(test_6)
+#record answer
+win.flip()
+print("clock3 after presenting and before collecting")
+onset.append(clock3.getTime())
+answer=trackanswers(test_6)
+print("clock3 after collecting")
+print(clock3.getTime())
+
+sum=float(onset[3][0][1]) + float(onset[2])
+onset[3]=sum
+datafile.writerow([answer, onset])
+
+#present stimuli 7
+onset=[]
+question = visual.TextStim(win, text="")
+question.draw()
+win.flip()
+core.wait(2)
+print("start clock3")
+clock3=core.Clock()
+presentest(test_7)
+#record answer
+win.flip()
+print("clock3 after presenting and before collecting")
+onset.append(clock3.getTime())
+answer=trackanswers(test_7)
+print("clock3 after collecting")
+print(clock3.getTime())
+
+sum=float(onset[3][0][1]) + float(onset[2])
+onset[3]=sum
+datafile.writerow([answer, onset])
+
+
+#present stimuli 8
+onset=[]
+question = visual.TextStim(win, text="")
+question.draw()
+win.flip()
+core.wait(2)
+print("start clock3")
+clock3=core.Clock()
+presentest(test_8)
+#record answer
+win.flip()
+print("clock3 after presenting and before collecting")
+onset.append(clock3.getTime())
+answer=trackanswers(test_8)
+print("clock3 after collecting")
+print(clock3.getTime())
+
+sum=float(onset[3][0][1]) + float(onset[2])
+onset[3]=sum
+datafile.writerow([answer, onset])
 """
 #present stimuli 4
 question = visual.TextStim(win, text="")
@@ -275,46 +394,6 @@ presentest(test_4)
 win.flip()
 trackanswers(test_4)
 
-#present stimuli 5
-question = visual.TextStim(win, text="")
-question.draw()
-win.flip()
-core.wait(2)
-presentest(test_5)
-#record answer
-win.flip()
-trackanswers(test_5)
-
-#present stimuli 6
-question = visual.TextStim(win, text="")
-question.draw()
-win.flip()
-core.wait(2)
-presentest(test_6)
-#record answer
-win.flip()
-trackanswers(test_6)
-
-#present stimuli 7
-#question = visual.TextStim(win, text="")
-#question.draw()
-#win.flip()
-#core.wait(2)
-#presentest(test_7)
-#record answer
-#win.flip()
-#trackanswers(test_7)
-
-#present stimuli 8
-#question = visual.TextStim(win, text="")
-#question.draw()
-#win.flip()
-#core.wait(2)
-#presentest(test_8)
-#record answer
-#win.flip()
-#trackanswers(test_8)
-   
 """
 fixation = visual.GratingStim(win=win, size=2, pos=[0,0], sf=0, rgb=-1)
 instructionslast=visual.TextStim(win, text="Thank you! You can now call the experimenter.")
