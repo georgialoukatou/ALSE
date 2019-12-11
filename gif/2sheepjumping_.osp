@@ -93,7 +93,7 @@
             "display": 0,
             "duration": 86400.0,
             "effects": [],
-            "end": 7.2,
+            "end": 5.166666666666667,
             "gravity": 4,
             "has_audio": {
                 "Points": [
@@ -257,7 +257,7 @@
                 "height": 765,
                 "interlaced_frame": false,
                 "metadata": {},
-                "path": "../cartoon-grass-and-sky_61044.jpg",
+                "path": "./cartoon-grass-and-sky_61044.jpg",
                 "pixel_format": -1,
                 "pixel_ratio": {
                     "den": 1,
@@ -19289,7 +19289,7 @@
     ],
     "effects": [],
     "export_path": "/Users/lscpuser/Desktop/gif",
-    "import_path": "/Users/lscpuser/Desktop/gif/ezgif-5-f056b6da4f9a-gif-im",
+    "import_path": "/Users/lscpuser/Documents/ALSE/artificialLanguageSegmentation/gif",
     "files": [
         {
             "acodec": "",
@@ -19317,7 +19317,7 @@
             "height": 765,
             "interlaced_frame": false,
             "metadata": {},
-            "path": "../cartoon-grass-and-sky_61044.jpg",
+            "path": "./cartoon-grass-and-sky_61044.jpg",
             "pixel_format": -1,
             "pixel_ratio": {
                 "den": 1,
@@ -20090,455 +20090,6 @@
     "progress": [],
     "history": {
         "undo": [
-            {
-                "type": "update",
-                "key": [
-                    "clips",
-                    {
-                        "id": "DUTESFV03J"
-                    }
-                ],
-                "value": {
-                    "id": "DUTESFV03J",
-                    "layer": 3000000,
-                    "position": 0,
-                    "image": "thumbnail/B9HVMZ47XI.png",
-                    "start": 0,
-                    "end": 7.133333333333334
-                },
-                "partial": false,
-                "old_values": {
-                    "alpha": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "anchor": 0,
-                    "channel_filter": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "channel_mapping": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "crop_height": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "crop_width": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "crop_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "crop_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "display": 0,
-                    "duration": 86400.0,
-                    "effects": [],
-                    "end": 7.166666666666667,
-                    "gravity": 4,
-                    "has_audio": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "has_video": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "id": "DUTESFV03J",
-                    "layer": 3000000,
-                    "location_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "location_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "mixing": 0,
-                    "perspective_c1_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c1_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c2_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c2_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c3_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c3_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c4_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "perspective_c4_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": -1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "position": 0,
-                    "reader": {
-                        "acodec": "",
-                        "audio_bit_rate": 0,
-                        "audio_stream_index": -1,
-                        "audio_timebase": {
-                            "den": 1,
-                            "num": 1
-                        },
-                        "channel_layout": 4,
-                        "channels": 0,
-                        "display_ratio": {
-                            "den": 765,
-                            "num": 1024
-                        },
-                        "duration": 86400.0,
-                        "file_size": "3133440",
-                        "fps": {
-                            "den": 1,
-                            "num": 30
-                        },
-                        "has_audio": false,
-                        "has_single_image": true,
-                        "has_video": true,
-                        "height": 765,
-                        "interlaced_frame": false,
-                        "metadata": {},
-                        "path": "../cartoon-grass-and-sky_61044.jpg",
-                        "pixel_format": -1,
-                        "pixel_ratio": {
-                            "den": 1,
-                            "num": 1
-                        },
-                        "sample_rate": 0,
-                        "top_field_first": true,
-                        "type": "QtImageReader",
-                        "vcodec": "",
-                        "video_bit_rate": 0,
-                        "video_length": "2592000",
-                        "video_stream_index": -1,
-                        "video_timebase": {
-                            "den": 30,
-                            "num": 1
-                        },
-                        "width": 1024
-                    },
-                    "rotation": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "scale": 1,
-                    "scale_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "scale_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "shear_x": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "shear_y": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 0.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "start": 0,
-                    "time": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "volume": {
-                        "Points": [
-                            {
-                                "co": {
-                                    "X": 1.0,
-                                    "Y": 1.0
-                                },
-                                "interpolation": 2
-                            }
-                        ]
-                    },
-                    "wave_color": {
-                        "alpha": {
-                            "Points": [
-                                {
-                                    "co": {
-                                        "X": 1.0,
-                                        "Y": 255.0
-                                    },
-                                    "handle_left": {
-                                        "X": 0.5,
-                                        "Y": 1.0
-                                    },
-                                    "handle_right": {
-                                        "X": 0.5,
-                                        "Y": 0.0
-                                    },
-                                    "handle_type": 0,
-                                    "interpolation": 0
-                                }
-                            ]
-                        },
-                        "blue": {
-                            "Points": [
-                                {
-                                    "co": {
-                                        "X": 1.0,
-                                        "Y": 255.0
-                                    },
-                                    "handle_left": {
-                                        "X": 0.5,
-                                        "Y": 1.0
-                                    },
-                                    "handle_right": {
-                                        "X": 0.5,
-                                        "Y": 0.0
-                                    },
-                                    "handle_type": 0,
-                                    "interpolation": 0
-                                }
-                            ]
-                        },
-                        "green": {
-                            "Points": [
-                                {
-                                    "co": {
-                                        "X": 1.0,
-                                        "Y": 123.0
-                                    },
-                                    "handle_left": {
-                                        "X": 0.5,
-                                        "Y": 1.0
-                                    },
-                                    "handle_right": {
-                                        "X": 0.5,
-                                        "Y": 0.0
-                                    },
-                                    "handle_type": 0,
-                                    "interpolation": 0
-                                }
-                            ]
-                        },
-                        "red": {
-                            "Points": [
-                                {
-                                    "co": {
-                                        "X": 1.0,
-                                        "Y": 0.0
-                                    },
-                                    "handle_left": {
-                                        "X": 0.5,
-                                        "Y": 1.0
-                                    },
-                                    "handle_right": {
-                                        "X": 0.5,
-                                        "Y": 0.0
-                                    },
-                                    "handle_type": 0,
-                                    "interpolation": 0
-                                }
-                            ]
-                        }
-                    },
-                    "waveform": false,
-                    "file_id": "B9HVMZ47XI",
-                    "title": "cartoon-grass-and-sky_61044.jpg",
-                    "image": "thumbnail/B9HVMZ47XI.png"
-                }
-            },
             {
                 "type": "update",
                 "key": [
@@ -26823,6 +26374,455 @@
                     "title": "frame_7_delay-0.1s.gif",
                     "image": "thumbnail/JEHFPJ7WWJ.png",
                     "id": "L2OBKZU44X"
+                }
+            },
+            {
+                "type": "update",
+                "key": [
+                    "clips",
+                    {
+                        "id": "DUTESFV03J"
+                    }
+                ],
+                "value": {
+                    "id": "DUTESFV03J",
+                    "layer": 3000000,
+                    "position": 0,
+                    "image": "thumbnail/B9HVMZ47XI.png",
+                    "start": 0,
+                    "end": 5.166666666666667
+                },
+                "partial": false,
+                "old_values": {
+                    "alpha": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "anchor": 0,
+                    "channel_filter": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "channel_mapping": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "crop_height": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "crop_width": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "crop_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "crop_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "display": 0,
+                    "duration": 86400.0,
+                    "effects": [],
+                    "end": 7.2,
+                    "gravity": 4,
+                    "has_audio": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "has_video": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "id": "DUTESFV03J",
+                    "layer": 3000000,
+                    "location_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "location_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "mixing": 0,
+                    "perspective_c1_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c1_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c2_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c2_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c3_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c3_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c4_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "perspective_c4_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": -1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "position": 0,
+                    "reader": {
+                        "acodec": "",
+                        "audio_bit_rate": 0,
+                        "audio_stream_index": -1,
+                        "audio_timebase": {
+                            "den": 1,
+                            "num": 1
+                        },
+                        "channel_layout": 4,
+                        "channels": 0,
+                        "display_ratio": {
+                            "den": 765,
+                            "num": 1024
+                        },
+                        "duration": 86400.0,
+                        "file_size": "3133440",
+                        "fps": {
+                            "den": 1,
+                            "num": 30
+                        },
+                        "has_audio": false,
+                        "has_single_image": true,
+                        "has_video": true,
+                        "height": 765,
+                        "interlaced_frame": false,
+                        "metadata": {},
+                        "path": "./cartoon-grass-and-sky_61044.jpg",
+                        "pixel_format": -1,
+                        "pixel_ratio": {
+                            "den": 1,
+                            "num": 1
+                        },
+                        "sample_rate": 0,
+                        "top_field_first": true,
+                        "type": "QtImageReader",
+                        "vcodec": "",
+                        "video_bit_rate": 0,
+                        "video_length": "2592000",
+                        "video_stream_index": -1,
+                        "video_timebase": {
+                            "den": 30,
+                            "num": 1
+                        },
+                        "width": 1024
+                    },
+                    "rotation": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "scale": 1,
+                    "scale_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "scale_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "shear_x": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "shear_y": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 0.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "start": 0,
+                    "time": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "volume": {
+                        "Points": [
+                            {
+                                "co": {
+                                    "X": 1.0,
+                                    "Y": 1.0
+                                },
+                                "interpolation": 2
+                            }
+                        ]
+                    },
+                    "wave_color": {
+                        "alpha": {
+                            "Points": [
+                                {
+                                    "co": {
+                                        "X": 1.0,
+                                        "Y": 255.0
+                                    },
+                                    "handle_left": {
+                                        "X": 0.5,
+                                        "Y": 1.0
+                                    },
+                                    "handle_right": {
+                                        "X": 0.5,
+                                        "Y": 0.0
+                                    },
+                                    "handle_type": 0,
+                                    "interpolation": 0
+                                }
+                            ]
+                        },
+                        "blue": {
+                            "Points": [
+                                {
+                                    "co": {
+                                        "X": 1.0,
+                                        "Y": 255.0
+                                    },
+                                    "handle_left": {
+                                        "X": 0.5,
+                                        "Y": 1.0
+                                    },
+                                    "handle_right": {
+                                        "X": 0.5,
+                                        "Y": 0.0
+                                    },
+                                    "handle_type": 0,
+                                    "interpolation": 0
+                                }
+                            ]
+                        },
+                        "green": {
+                            "Points": [
+                                {
+                                    "co": {
+                                        "X": 1.0,
+                                        "Y": 123.0
+                                    },
+                                    "handle_left": {
+                                        "X": 0.5,
+                                        "Y": 1.0
+                                    },
+                                    "handle_right": {
+                                        "X": 0.5,
+                                        "Y": 0.0
+                                    },
+                                    "handle_type": 0,
+                                    "interpolation": 0
+                                }
+                            ]
+                        },
+                        "red": {
+                            "Points": [
+                                {
+                                    "co": {
+                                        "X": 1.0,
+                                        "Y": 0.0
+                                    },
+                                    "handle_left": {
+                                        "X": 0.5,
+                                        "Y": 1.0
+                                    },
+                                    "handle_right": {
+                                        "X": 0.5,
+                                        "Y": 0.0
+                                    },
+                                    "handle_type": 0,
+                                    "interpolation": 0
+                                }
+                            ]
+                        }
+                    },
+                    "waveform": false,
+                    "file_id": "B9HVMZ47XI",
+                    "title": "cartoon-grass-and-sky_61044.jpg",
+                    "image": "thumbnail/B9HVMZ47XI.png"
                 }
             }
         ],
