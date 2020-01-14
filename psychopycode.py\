@@ -60,14 +60,13 @@ sound_list=list()
 video_file=list()
 video_list=list()
 
-
+"""
 #getfiles(path_train_audio, audio_file, sound_list)
 getfiles(path_train_video, video_file, video_list)
 
 print(video_list)
 print(sound_list)
 
-"""
 #Attribute  identifier to subject
 import random
 for x in range(1):
@@ -109,23 +108,21 @@ key = get_keypress()
 stoporcontinue(key)
 
 
-mov = visual.MovieStim(myWin, 'A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.mov', flipVert=False)
-mov.draw()
-
 y=0
 random.shuffle(video_list)
-for i, video in enumerate(video_list): 
+for i, video in enumerate(video_list):
+    print(video) 
 #   y=y+1
 #   if y <2:
     #videoname=str(video).replace("/Users/lscpuser/Documents/ALSE/pilot4/train_mov/"+ str(group) + "/", "").replace(".mov","")
-    videoname=str(video).replace("/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/", "").replace(".mov","")
+    videoname=str(video).replace("/Users/admin/Documents/artificialLanguageSegmentation/", "").replace(".mov","")
     print(videoname)
     key = get_keypress()
     stoporcontinue(key)
     fixation.draw()
     win.update()
     core.wait(0.5)
-    mov = visual.MovieStim(win, video,flipVert=False, flipHoriz=False)
+    mov = visual.MovieStim2(win, video,pos=[0, 100],flipVert=False, flipHoriz=False)
     shouldflip = mov.play() ####playvideo
     nextFlip=win.getFutureFlipTime(clock='ptb')
     while mov.status != visual.FINISHED:

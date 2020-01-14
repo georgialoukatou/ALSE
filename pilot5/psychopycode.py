@@ -5,9 +5,10 @@ from __future__ import division
 from datetime import datetime
 #from psychopy import psychtoolbox as ptb
 from psychopy import visual, core, event, sound
+#from psychopy.visual import vlc
 import time, os
 import csv, random
-import pyglet
+#import pyglet
 
 group="groupA"
 
@@ -17,15 +18,23 @@ datafile = csv.writer(datafile, delimiter=",")
 path_train_video="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/"
 path_test_audio="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/test_sample/"
 
-video="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.mov"
+video="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.m4v"
+
+
+
 
 win = visual.Window(fullscr="TRUE")
-mov = visual.MovieStim3(win, video,pos=[0, 100],flipVert=False, flipHoriz=False)
+mov = visual.MovieStim2(win, video,pos=[0, 100],flipVert=False, flipHoriz=False)
 clock = core.Clock()
 if clock < 5:
     mov = visual.MovieStim3(win, video,pos=[0, 100],flipVert=False, flipHoriz=False )
 else:
     mov.stop()
+
+
+#mov = visual.MovieStim3(win, video, flipVert=False)
+#mov.play()
+#mov.draw()
 
 
 #####Select train files and raise RuntimeError if not
@@ -109,8 +118,12 @@ key = get_keypress()
 stoporcontinue(key)
 
 
-mov = visual.MovieStim(myWin, 'A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.mov', flipVert=False)
-mov.draw()
+
+#video1="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.mov"
+#mov=visual.MovieStim2(win, video1)
+
+#mov.draw()
+
 
 y=0
 random.shuffle(video_list)
@@ -118,24 +131,24 @@ for i, video in enumerate(video_list):
 #   y=y+1
 #   if y <2:
     #videoname=str(video).replace("/Users/lscpuser/Documents/ALSE/pilot4/train_mov/"+ str(group) + "/", "").replace(".mov","")
-    videoname=str(video).replace("/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/", "").replace(".mov","")
+    videoname=str(video).replace("/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/", "").replace(".m4v","")
     print(videoname)
     key = get_keypress()
     stoporcontinue(key)
     fixation.draw()
     win.update()
     core.wait(0.5)
-    mov = visual.MovieStim(win, video,flipVert=False, flipHoriz=False)
-    shouldflip = mov.play() ####playvideo
+    mov = visual.MovieStim2(win, video,flipVert=False, flipHoriz=False)
+##  shouldflip = mov.play() ####playvideo
     nextFlip=win.getFutureFlipTime(clock='ptb')
     while mov.status != visual.FINISHED:
-        mov.draw()
-        win.flip()
-    #  if shouldflip:     
-     #    win.flip()
-      #else:
-       #  time.sleep(0.001)
-      #shouldflip = mov.draw()
+    	mov.draw()
+     	win.flip()
+ #   #  if shouldflip:     
+  #   #    win.flip()
+   #   #else:
+    #   #  time.sleep(0.001)
+     # #shouldflip = mov.draw()
 
 print("hi")
 
