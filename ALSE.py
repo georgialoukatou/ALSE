@@ -44,17 +44,14 @@ def trainstim(sentence, name):
  for element in sentence:
   trainoutput.write(element + str("\n"))
   element=stringtoPhon(element)
-  print(element)
-  print(count)
-  print(Atrainnamelist[count])
-  system('say -o  ~/Documents/ALSE/pilot5/train/{}.aiff  {}'.format(name[count], element)) 
+  system('say -o  ~/Documents/ALSE/pilot6/train/{}.aiff  {}'.format(name[count], element)) 
   count=count+1
 
 def teststim(list, name):
  count=0
  for example in list:
    #  example=stringtoPhon(example)
-   system('say -o  ~/Documents/ALSE/pilot5/test/{}.aiff  {}'.format(name[count],  example))
+   system('say -o  ~/Documents/ALSE/pilot6/test/{}.aiff  {}'.format(name[count],  example))
    count=count+1
    
    
@@ -90,6 +87,7 @@ AProgressiveN= str(Syllables[17])
 
 print(ANoun, AVerb, ADisrupter1, ADisrupter2, ASingularNoun, ASingularVerb, APluralNoun, APluralVerb, AProgressiveY, AProgressiveN)
 
+"""
 ##########Group B
 
 BNoun.append(str(Syllables[17]+ Syllables[16]))
@@ -177,7 +175,7 @@ DProgressiveN= str(Syllables[7])
 
 
 #print(DNoun, DVerb, DDisrupter1, DDisrupter2, DSingularNoun, DSingularVerb, DPluralNoun, DPluralVerb, DProgressiveY, DProgressiveN)
-
+"""
 
 
 #############################################TRAINING
@@ -198,6 +196,14 @@ ASentence.append(ADisrupter1[0] + " - " + ANoun[1] + APluralNoun + " - " +  AVer
 ASentence.append(ADisrupter1[0] + " - " + ANoun[1] + APluralNoun + " - " +  AVerb[0] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #sheep flip
 ASentence.append(ADisrupter1[0] + " - " + ANoun[1] + APluralNoun + " - " +  AVerb[2] + AProgressiveY + APluralVerb + " - " + ADisrupter2[0]) #sheep walking
 ASentence.append(ADisrupter1[0] + " - " + ANoun[1] + APluralNoun + " - " +  AVerb[2] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #sheep walk
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[0]) #cat walk
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[0]) #cat walking
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #cats walk
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveY + APluralVerb + " - " + ADisrupter2[0]) #cats walking
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[1] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[0]) #cat jumping
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[1] + AProgressiveY + APluralVerb + " - " + ADisrupter2[0]) #cats jumping
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[0] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[0]) #cat flip
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[0] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #cats flip
 ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[0]) #cat walk
 ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[0]) #cat walking
 ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #cats walk
@@ -231,7 +237,15 @@ ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + ASingularNoun + " - " +  AV
 ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[1] + AProgressiveY + APluralVerb + " - " + ADisrupter2[0]) #cats jumping
 ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[0] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[0]) #cat flip
 ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[0] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #cats flip
-
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[0]) #cat walk
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[0]) #cat walking
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #cats walk
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveY + APluralVerb + " - " + ADisrupter2[0]) #cats walking
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[1] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[0]) #cat jumping
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[1] + AProgressiveY + APluralVerb + " - " + ADisrupter2[0]) #cats jumping
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[0] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[0]) #cat flip
+ASentence.append(ADisrupter1[1] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[0] + AProgressiveN + APluralVerb + " - " + ADisrupter2[0]) #cats flip
+#
 ASentence.append(ADisrupter1[0] + " - " + ANoun[0] + ASingularNoun + " - " +  AVerb[2] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[1]) #dog walk
 ASentence.append(ADisrupter1[0] + " - " + ANoun[0] + ASingularNoun + " - " +  AVerb[2] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[1]) #dog walking
 ASentence.append(ADisrupter1[0] + " - " + ANoun[0] + ASingularNoun + " - " +  AVerb[1] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[1]) #dog jumping
@@ -256,94 +270,25 @@ ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AV
 ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[1] + AProgressiveY + APluralVerb + " - " + ADisrupter2[1]) #cats jumping
 ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[0] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[1]) #cat flip
 ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[0] + AProgressiveN + APluralVerb + " - " + ADisrupter2[1]) #cats flip
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[1]) #cat walk
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[2] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[1]) #cat walking
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveN + APluralVerb + " - " + ADisrupter2[1]) #cats walk
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[2] + AProgressiveY + APluralVerb + " - " + ADisrupter2[1]) #cats walking
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[1] + AProgressiveY + ASingularVerb + " - " + ADisrupter2[1]) #cat jumping
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[1] + AProgressiveY + APluralVerb + " - " + ADisrupter2[1]) #cats jumping
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + ASingularNoun + " - " +  AVerb[0] + AProgressiveN + ASingularVerb + " - " + ADisrupter2[1]) #cat flip
+ASentence.append(ADisrupter1[0] + " - " + ANoun[2] + APluralNoun + " - " +  AVerb[0] + AProgressiveN + APluralVerb + " - " + ADisrupter2[1]) #cats flip
 
-
+"""
 
 #B
-
 BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[2] + BProgressiveN + BSingularVerb + " - " + BDisrupter2[0]) #dog walk
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[2] + BProgressiveY + BSingularVerb + " - " + BDisrupter2[0]) #dog walking
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[1] + BProgressiveY + BSingularVerb + " - " + BDisrupter2[0]) #dog jumping
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[0] + BProgressiveN + BSingularVerb + " - " + BDisrupter2[0]) #dog flip
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[2] + BProgressiveN + BSingularVerb + " - " + BDisrupter2[0]) #dog walk
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[2] + BProgressiveY + BSingularVerb + " - " + BDisrupter2[0]) #dog walking
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[1] + BProgressiveY + BSingularVerb + " - " + BDisrupter2[0]) #dog jumping
-BSentence.append(BDisrupter1[0] + " - " + BNoun[0] + BSingularNoun + " - " +  BVerb[0] + BProgressiveN + BSingularVerb + " - " + BDisrupter2[0]) #dog flip
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[1] + BProgressiveY + BPluralVerb + " - " + BDisrupter2[0]) #sheep jumping (plural)
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[0] + BProgressiveN + BPluralVerb + " - " + BDisrupter2[0]) #sheep flip
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[2] + BProgressiveY + BPluralVerb + " - " + BDisrupter2[0]) #sheep walking
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[2] + BProgressiveN + BPluralVerb + " - " + BDisrupter2[0]) #sheep walk
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[1] + BProgressiveY + BPluralVerb + " - " + BDisrupter2[0]) #sheep jumping
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[0] + BProgressiveN + BPluralVerb + " - " + BDisrupter2[0]) #sheep flip
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[2] + BProgressiveY + BPluralVerb + " - " + BDisrupter2[0]) #sheep walking
-BSentence.append(BDisrupter1[0] + " - " + BNoun[1] + BPluralNoun + " - " +  BVerb[2] + BProgressiveN + BPluralVerb + " - " + BDisrupter2[0]) #sheep walk
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BSingularNoun + " - " +  BVerb[2] + BProgressiveN + BSingularVerb + " - " + BDisrupter2[0]) #cat walk
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BSingularNoun + " - " +  BVerb[2] + BProgressiveY + BSingularVerb + " - " + BDisrupter2[0]) #cat walking
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BPluralNoun + " - " +  BVerb[2] + BProgressiveN + BPluralVerb + " - " + BDisrupter2[0]) #cats walk
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BPluralNoun + " - " +  BVerb[2] + BProgressiveY + BPluralVerb + " - " + BDisrupter2[0]) #cats walking
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BSingularNoun + " - " +  BVerb[1] + BProgressiveY + BSingularVerb + " - " + BDisrupter2[0]) #cat jumping
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BPluralNoun + " - " +  BVerb[1] + BProgressiveY + BPluralVerb + " - " + BDisrupter2[0]) #cats jumping
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BSingularNoun + " - " +  BVerb[0] + BProgressiveN + BSingularVerb + " - " + BDisrupter2[0]) #cat flip
-BSentence.append(BDisrupter1[0] + " - " + BNoun[2] + BPluralNoun + " - " +  BVerb[0] + BProgressiveN + BPluralVerb + " - " + BDisrupter2[0]) #cats flip
-
-
-
 
 #C
-
 CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[2] + CProgressiveN + CSingularVerb + " - " + CDisrupter2[0]) #dog walk
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[2] + CProgressiveY + CSingularVerb + " - " + CDisrupter2[0]) #dog walking
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[1] + CProgressiveY + CSingularVerb + " - " + CDisrupter2[0]) #dog jumping
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[0] + CProgressiveN + CSingularVerb + " - " + CDisrupter2[0]) #dog flip
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[2] + CProgressiveN + CSingularVerb + " - " + CDisrupter2[0]) #dog walk
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[2] + CProgressiveY + CSingularVerb + " - " + CDisrupter2[0]) #dog walking
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[1] + CProgressiveY + CSingularVerb + " - " + CDisrupter2[0]) #dog jumping
-CSentence.append(CDisrupter1[0] + " - " + CNoun[0] + CSingularNoun + " - " +  CVerb[0] + CProgressiveN + CSingularVerb + " - " + CDisrupter2[0]) #dog flip
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[1] + CProgressiveY + CPluralVerb + " - " + CDisrupter2[0]) #sheep jumping (plural)
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[0] + CProgressiveN + CPluralVerb + " - " + CDisrupter2[0]) #sheep flip
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[2] + CProgressiveY + CPluralVerb + " - " + CDisrupter2[0]) #sheep walking
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[2] + CProgressiveN + CPluralVerb + " - " + CDisrupter2[0]) #sheep walk
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[1] + CProgressiveY + CPluralVerb + " - " + CDisrupter2[0]) #sheep jumping
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[0] + CProgressiveN + CPluralVerb + " - " + CDisrupter2[0]) #sheep flip
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[2] + CProgressiveY + CPluralVerb + " - " + CDisrupter2[0]) #sheep walking
-CSentence.append(CDisrupter1[0] + " - " + CNoun[1] + CPluralNoun + " - " +  CVerb[2] + CProgressiveN + CPluralVerb + " - " + CDisrupter2[0]) #sheep walk
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CSingularNoun + " - " +  CVerb[2] + CProgressiveN + CSingularVerb + " - " + CDisrupter2[0]) #cat walk
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CSingularNoun + " - " +  CVerb[2] + CProgressiveY + CSingularVerb + " - " + CDisrupter2[0]) #cat walking
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CPluralNoun + " - " +  CVerb[2] + CProgressiveN + CPluralVerb + " - " + CDisrupter2[0]) #cats walk
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CPluralNoun + " - " +  CVerb[2] + CProgressiveY + CPluralVerb + " - " + CDisrupter2[0]) #cats walking
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CSingularNoun + " - " +  CVerb[1] + CProgressiveY + CSingularVerb + " - " + CDisrupter2[0]) #cat jumping
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CPluralNoun + " - " +  CVerb[1] + CProgressiveY + CPluralVerb + " - " + CDisrupter2[0]) #cats jumping
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CSingularNoun + " - " +  CVerb[0] + CProgressiveN + CSingularVerb + " - " + CDisrupter2[0]) #cat flip
-CSentence.append(CDisrupter1[0] + " - " + CNoun[2] + CPluralNoun + " - " +  CVerb[0] + CProgressiveN + CPluralVerb + " - " + CDisrupter2[0]) #cats flip
-
-
 
 #D
 DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[2] + DProgressiveN + DSingularVerb + " - " + DDisrupter2[0]) #dog walk
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[2] + DProgressiveY + DSingularVerb + " - " + DDisrupter2[0]) #dog walking
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[1] + DProgressiveY + DSingularVerb + " - " + DDisrupter2[0]) #dog jumping
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[0] + DProgressiveN + DSingularVerb + " - " + DDisrupter2[0]) #dog flip
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[2] + DProgressiveN + DSingularVerb + " - " + DDisrupter2[0]) #dog walk
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[2] + DProgressiveY + DSingularVerb + " - " + DDisrupter2[0]) #dog walking
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[1] + DProgressiveY + DSingularVerb + " - " + DDisrupter2[0]) #dog jumping
-DSentence.append(DDisrupter1[0] + " - " + DNoun[0] + DSingularNoun + " - " +  DVerb[0] + DProgressiveN + DSingularVerb + " - " + DDisrupter2[0]) #dog flip
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[1] + DProgressiveY + DPluralVerb + " - " + DDisrupter2[0]) #sheep jumping (plural)
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[0] + DProgressiveN + DPluralVerb + " - " + DDisrupter2[0]) #sheep flip
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[2] + DProgressiveY + DPluralVerb + " - " + DDisrupter2[0]) #sheep walking
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[2] + DProgressiveN + DPluralVerb + " - " + DDisrupter2[0]) #sheep walk
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[1] + DProgressiveY + DPluralVerb + " - " + DDisrupter2[0]) #sheep jumping
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[0] + DProgressiveN + DPluralVerb + " - " + DDisrupter2[0]) #sheep flip
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[2] + DProgressiveY + DPluralVerb + " - " + DDisrupter2[0]) #sheep walking
-DSentence.append(DDisrupter1[0] + " - " + DNoun[1] + DPluralNoun + " - " +  DVerb[2] + DProgressiveN + DPluralVerb + " - " + DDisrupter2[0]) #sheep walk
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DSingularNoun + " - " +  DVerb[2] + DProgressiveN + DSingularVerb + " - " + DDisrupter2[0]) #cat walk
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DSingularNoun + " - " +  DVerb[2] + DProgressiveY + DSingularVerb + " - " + DDisrupter2[0]) #cat walking
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DPluralNoun + " - " +  DVerb[2] + DProgressiveN + DPluralVerb + " - " + DDisrupter2[0]) #cats walk
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DPluralNoun + " - " +  DVerb[2] + DProgressiveY + DPluralVerb + " - " + DDisrupter2[0]) #cats walking
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DSingularNoun + " - " +  DVerb[1] + DProgressiveY + DSingularVerb + " - " + DDisrupter2[0]) #cat jumping
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DPluralNoun + " - " +  DVerb[1] + DProgressiveY + DPluralVerb + " - " + DDisrupter2[0]) #cats jumping
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DSingularNoun + " - " +  DVerb[0] + DProgressiveN + DSingularVerb + " - " + DDisrupter2[0]) #cat flip
-DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DPluralNoun + " - " +  DVerb[0] + DProgressiveN + DPluralVerb + " - " + DDisrupter2[0]) #cats flip
-
 
 #for N in DNoun:
  # for V in DVerb:
@@ -352,91 +297,111 @@ DSentence.append(DDisrupter1[0] + " - " + DNoun[2] + DPluralNoun + " - " +  DVer
    #  DSentence.append(random.choice(DDisrupter1)+ " - " + N + DSingularNoun + " - " + V + DProgressiveN + DSingularVerb + " - " + random.choice(DDisrupter2))
     # DSentence.append(random.choice(DDisrupter1)+ " - " + N + DPluralNoun + " - " + V + DProgressiveN + DPluralVerb + " - " + random.choice(DDisrupter2))
 
-
-
-Atrainnamelist=["A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter0_noun0_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter0_2",
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter0_2",
-"A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2",
-"A_Disrupter0_noun0_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter0_2",
-"A_Disrupter0_noun1_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter0_noun1_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter0",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter0",
-"A_Disrupter0_noun1_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter0_2",
-"A_Disrupter0_noun1_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter0_2",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter0_2",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter0_2",
-"A_Disrupter0_noun2_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter0_noun2_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter0_noun2_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter0",
-"A_Disrupter0_noun2_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter0_noun2_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter0_noun2_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter0_noun2_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter0_noun2_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter0",
-
-"A_Disrupter1_noun0_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter1_noun0_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter1_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter1_noun0_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter1_noun0_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter0_2",
-"A_Disrupter1_noun0_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter0_2",
-"A_Disrupter1_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2",
-"A_Disrupter1_noun0_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter0_2",
-"A_Disrupter1_noun1_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter1_noun1_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter0",
-"A_Disrupter1_noun1_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter1_noun1_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter0",
-"A_Disrupter1_noun1_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter0_2",
-"A_Disrupter1_noun1_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter0_2",
-"A_Disrupter1_noun1_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter0_2",
-"A_Disrupter1_noun1_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter0_2",
-"A_Disrupter1_noun2_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter1_noun2_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter1_noun2_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter0",
-"A_Disrupter1_noun2_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter1_noun2_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0",
-"A_Disrupter1_noun2_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter0",
-"A_Disrupter1_noun2_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter0",
-"A_Disrupter1_noun2_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter0",
-
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter1",
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter1",
-"A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter1",
-"A_Disrupter0_noun0_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter1",
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter1_2",
-"A_Disrupter0_noun0_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter1_2",
-"A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter1_2",
-"A_Disrupter0_noun0_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter1_2",
-"A_Disrupter0_noun1_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter1",
-"A_Disrupter0_noun1_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter1",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter1",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter1",
-"A_Disrupter0_noun1_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter1_2",
-"A_Disrupter0_noun1_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter1_2",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter1_2",
-"A_Disrupter0_noun1_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter1_2",
-"A_Disrupter0_noun2_Singularnoun_verb2_ProgressiveN_Singularverb_Disrupter1",
-"A_Disrupter0_noun2_Singularnoun_verb2_ProgressiveY_Singularverb_Disrupter1",
-"A_Disrupter0_noun2_Pluralnoun_verb2_ProgressiveN_Pluralverb_Disrupter1",
-"A_Disrupter0_noun2_Pluralnoun_verb2_ProgressiveY_Pluralverb_Disrupter1",
-"A_Disrupter0_noun2_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter1",
-"A_Disrupter0_noun2_Pluralnoun_verb1_ProgressiveY_Pluralverb_Disrupter1",
-"A_Disrupter0_noun2_Singularnoun_verb0_ProgressiveN_Singularverb_Disrupter1",
-"A_Disrupter0_noun2_Pluralnoun_verb0_ProgressiveN_Pluralverb_Disrupter1"]
-
-
-
-trainstim(ASentence, Atrainnamelist)
 """
-trainstim(BSentence,  Btrainnamelist)
-trainstim(CSentence,  Ctrainnamelist)
-trainstim(DSentence, Dtrainnamelist)
-"""
+
+Atrainnamelist=["1_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"2_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"3_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"4_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"5_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]", 
+"6_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"7_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"8_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]", 
+"9_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"10_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"11_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"12_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"13_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"14_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"15_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"16_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"17_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"18_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]", 
+"19_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"20_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"21_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"22_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"23_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"24_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"25_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"26_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"27_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"28_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"29_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"30_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"31_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"32_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"33_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"34_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"35_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"36_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"37_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]", 
+"38_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"39_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"40_ADisrupter1[1]_ANoun[0]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]", 
+"41_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"42_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"43_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"44_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"45_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"46_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"47_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"48_ADisrupter1[1]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]", 
+"49_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"50_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]", 
+"51_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"52_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"53_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"54_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"55_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"56_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"57_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"58_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"59_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"60_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"61_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[0]",
+"62_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[0]",
+"63_ADisrupter1[1]_ANoun[2]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[0]",
+"64_ADisrupter1[1]_ANoun[2]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[0]",
+"65_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[1]",
+"66_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"67_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"68_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[1]",
+"69_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[1]", 
+"70_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"71_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"72_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[1]", 
+"73_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"74_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[1]", 
+"75_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"76_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[1]", 
+"77_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"78_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[1]", 
+"79_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"80_ADisrupter1[0]_ANoun[1]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[1]", 
+"81_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[1]",
+"82_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[1]", 
+"83_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[1]",
+"84_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"85_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"86_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"87_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[1]",
+"88_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[1]",
+"89_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveN_ASingularVerb_ADisrupter2[1]",
+"90_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[2]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"91_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveN_APluralVerb_ADisrupter2[1]",
+"92_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[2]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"93_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[1]_AProgressiveY_ASingularVerb_ADisrupter2[1]",
+"94_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[1]_AProgressiveY_APluralVerb_ADisrupter2[1]",
+"95_ADisrupter1[0]_ANoun[2]_ASingularNoun_AVerb[0]_AProgressiveN_ASingularVerb_ADisrupter2[1]",
+"96_ADisrupter1[0]_ANoun[2]_APluralNoun_AVerb[0]_AProgressiveN_APluralVerb_ADisrupter2[1]"
+]
+
+
+print(len(ASentence))
+print(len(Atrainnamelist))
+#trainstim(ASentence, Atrainnamelist)
+
 
 
 #############TEST
@@ -447,129 +412,95 @@ trainstim(DSentence, Dtrainnamelist)
 #verb vs non-verb
 Atest1c_Verb2_ProgressiveY_Pluralverb = AVerb[2] + AProgressiveY + APluralVerb # 0.5  0.5
 Atest1f_Pluralnoun_Verb2_ProgressiveY = APluralNoun + AVerb[2] + AProgressiveY 
-
 Atest11c_Verb2_ProgressiveY_Singularverb = AVerb[2] + AProgressiveY + ASingularVerb # 0.5  + 0.5
 Atest11f_Singularnoun_Verb2_ProgressiveY = ASingularNoun + AVerb[2] + AProgressiveY 
-
 Atest111c_Verb0_ProgressiveN_Singularverb = AVerb[0] + AProgressiveN + ASingularVerb # 1 + 1  + 0.5
 Atest111f_Noun1_Pluralnoun_Verb2 = ANoun[1] + APluralNoun + AVerb[2]
-
 Atest1111c_Verb1_ProgressiveY_Pluralverb = AVerb[1] + AProgressiveY + APluralVerb # 1 + 1 + 0.5
 Atest1111f_Noun0_Singularnoun_Verb2 = ANoun[0] + ASingularNoun +  AVerb[2] 
-
 Atest11111c_Verb2_ProgressiveN_Pluralverb = AVerb[2] + AProgressiveN + APluralVerb #0.5 0.5
 Atest11111f_Pluralnoun_Verb2_ProgressiveN = APluralNoun + AVerb[2] + AProgressiveN
-
 Atest111111c_Verb2_ProgressiveN_Singularverb = AVerb[2] + AProgressiveN + ASingularVerb #0.5 0.5
 Atest111111f_Singularnoun_Verb2_ProgressiveN = ASingularNoun + AVerb[2] + AProgressiveN
- 
 
 
 #noun vs non-noun
 Atest2c_Noun2_Singularnoun = ANoun[2] + ASingularNoun
 Atest2f_Singularnoun_Verb2 = ASingularNoun + AVerb[2]
-
 Atest22c_Noun2_Pluralnoun = ANoun[2] + APluralNoun
 Atest22f_Pluralnoun_Verb2 = APluralNoun + AVerb[2]
-
 Atest222c_Noun1_Pluralnoun = ANoun[1] + APluralNoun
-Atest222f_2ndofVerb0_ProgressiveN  = str(Syllables[1]) + AProgressiveN
-
+Atest222f_Verb0_ProgressiveN  = AVerb[0] + AProgressiveN  #smallPROBLEM
 Atest2222c_Noun0_Singularnoun = ANoun[0] + ASingularNoun
-Atest2222f_2ndofVerb1_ProgressiveY  = str(Syllables[3]) + AProgressiveY
-
+Atest2222f_Verb1_ProgressiveY  = AVerb[1] + AProgressiveY  #smallPROBLEM
 
 
 #verbstem vs non-verbstem
-
 Atest3c_Verb0  = AVerb[0]
-Atest3f_2ndofVerb0_ProgressiveN = str(Syllables[6]) + AProgressiveN
-
+Atest3f_2ndofVerb1_ProgressiveY = AVerb[1][3:6]+ AProgressiveY
 Atest33c_Verb1  = AVerb[1]
-Atest33f_2ndofVerb1_ProgressiveY = str(Syllables[8]) + AProgressiveY
-
+Atest33f_2ndofVerb0_ProgressiveN = AVerb[0][2:5] + AProgressiveN
 Atest333c_Verb0  = AVerb[0]
-Atest333f_2ndofNoun0_Singularnoun  =  str(Syllables[1]) + ASingularNoun
-
-Atest3333c_Verb0  = AVerb[0]
-Atest3333f_2ndofVerb1_ProgressiveY = str(Syllables[8]) + AProgressiveY
-
-Atest33333c__Verb1  = AVerb[1]
-Atest33333f_2ndofVerb0_ProgressiveN = str(Syllables[6]) + AProgressiveN
-
-Atest333333c_Verb1  = AVerb[1]
-Atest333333f_2ndofNoun1_Pluralnoun  =  str(Syllables[3]) + APluralNoun
+Atest333f_2ndofNoun0_Singularnoun  =  ANoun[0][3:6]+ ASingularNoun 
+Atest3333c_Verb1  = AVerb[1]
+Atest3333f_2ndofNoun1_Pluralnoun  = ANoun[1][2:5]+ APluralNoun 
 
 
 
-#nounstem vs  non-nounstem
-
+#nounstem vs non-nounstem
 Atest4c_Noun1 = ANoun[1]
-Atest4f_2ndofNoun1_Pluralnoun  =  str(Syllables[3]) + APluralNoun
-
+Atest4f_2ndofNoun1_Pluralnoun  =  ANoun[1][2:5]+ APluralNoun
 Atest44c_Noun0 = ANoun[0]
-Atest44f_2ndofNoun0_Singularnoun  =  str(Syllables[1]) + ASingularNoun
-
+Atest44f_2ndofNoun0_Singularnoun  =  ANoun[0][3:6]+ ASingularNoun 
 Atest444c_Noun1 =  ANoun[1]
-Atest444f_2ndofVerb1_ProgressiveY = str(Syllables[8]) + AProgressiveY
-
+Atest444f_2ndofVerb1_ProgressiveY =  AVerb[1][3:6]+ AProgressiveY
 Atest4444c_Noun0 =  ANoun[0]
-Atest4444f_2ndofNoun1_Pluralnoun  =  str(Syllables[3]) + APluralNoun
+Atest4444f_2ndofVerb0_ProgressiveN = AVerb[0][2:5] + AProgressiveN
 
-Atest44444c_Noun0 =  ANoun[0]
-Atest44444f_2ndofVerb0_ProgressiveN = str(Syllables[6]) + AProgressiveN
-
-Atest444444c_Noun1 = ANoun[1]
-Atest444444f_2ndofNoun0_Singularnoun  =  str(Syllables[1]) + ASingularNoun
 
 
 Atest.extend((Atest1c_Verb2_ProgressiveY_Pluralverb,Atest1f_Pluralnoun_Verb2_ProgressiveY,
-Atest11c_Verb2_ProgressiveY_Singularverb, Atest11f_Singularnoun_Verb2_ProgressiveY, 
+Atest11c_Verb2_ProgressiveY_Singularverb,Atest11f_Singularnoun_Verb2_ProgressiveY,
 Atest111c_Verb0_ProgressiveN_Singularverb, Atest111f_Noun1_Pluralnoun_Verb2,
-Atest1111c_Verb1_ProgressiveY_Pluralverb,  Atest1111f_Noun0_Singularnoun_Verb2,
-Atest11111c_Verb2_ProgressiveN_Pluralverb, Atest11111f_Pluralnoun_Verb2_ProgressiveN,
+Atest1111c_Verb1_ProgressiveY_Pluralverb,Atest1111f_Noun0_Singularnoun_Verb2,
+Atest11111c_Verb2_ProgressiveN_Pluralverb,Atest11111f_Pluralnoun_Verb2_ProgressiveN,
 Atest111111c_Verb2_ProgressiveN_Singularverb, Atest111111f_Singularnoun_Verb2_ProgressiveN,
 Atest2c_Noun2_Singularnoun, Atest2f_Singularnoun_Verb2,
 Atest22c_Noun2_Pluralnoun, Atest22f_Pluralnoun_Verb2,
-Atest222c_Noun1_Pluralnoun, Atest222f_2ndofVerb0_ProgressiveN,
-Atest2222c_Noun0_Singularnoun,  Atest2222f_2ndofVerb1_ProgressiveY,
-Atest3c_Verb0, Atest3f_2ndofVerb0_ProgressiveN,
-Atest33c_Verb1, Atest33f_2ndofVerb1_ProgressiveY,
+Atest222c_Noun1_Pluralnoun, Atest222f_Verb0_ProgressiveN,
+Atest2222c_Noun0_Singularnoun,Atest2222f_Verb1_ProgressiveY,
+Atest3c_Verb0, Atest3f_2ndofVerb1_ProgressiveY,
+Atest33c_Verb1, Atest33f_2ndofVerb0_ProgressiveN,
 Atest333c_Verb0, Atest333f_2ndofNoun0_Singularnoun,
-Atest3333c_Verb0, Atest3333f_2ndofVerb1_ProgressiveY,
-Atest33333c__Verb1, Atest33333f_2ndofVerb0_ProgressiveN,
-Atest333333c_Verb1, Atest333333f_2ndofNoun1_Pluralnoun,
-Atest4c_Noun1, Atest4f_2ndofNoun1_Pluralnoun,
-Atest44c_Noun0, Atest44f_2ndofNoun0_Singularnoun,
+Atest3333c_Verb1, Atest3333f_2ndofNoun1_Pluralnoun,
+Atest4c_Noun1, Atest4f_2ndofNoun1_Pluralnoun ,
+Atest44c_Noun0,Atest44f_2ndofNoun0_Singularnoun,
 Atest444c_Noun1, Atest444f_2ndofVerb1_ProgressiveY,
-Atest4444c_Noun0, Atest4444f_2ndofNoun1_Pluralnoun,
-Atest44444c_Noun0, Atest44444f_2ndofVerb0_ProgressiveN,
-Atest444444c_Noun1, Atest444444f_2ndofNoun0_Singularnoun))
+Atest4444c_Noun0,Atest4444f_2ndofVerb0_ProgressiveN 
+))
 
 
 Atestnamelist=("Atest1c_Verb2_ProgressiveY_Pluralverb","Atest1f_Pluralnoun_Verb2_ProgressiveY",
-"Atest11c_Verb2_ProgressiveY_Singularverb", "Atest11f_Singularnoun_Verb2_ProgressiveY", 
+"Atest11c_Verb2_ProgressiveY_Singularverb","Atest11f_Singularnoun_Verb2_ProgressiveY",
 "Atest111c_Verb0_ProgressiveN_Singularverb", "Atest111f_Noun1_Pluralnoun_Verb2",
-"Atest1111c_Verb1_ProgressiveY_Pluralverb",  "Atest1111f_Noun0_Singularnoun_Verb2",
-"Atest11111c_Verb2_ProgressiveN_Pluralverb", "Atest11111f_Pluralnoun_Verb2_ProgressiveN",
+"Atest1111c_Verb1_ProgressiveY_Pluralverb","Atest1111f_Noun0_Singularnoun_Verb2",
+"Atest11111c_Verb2_ProgressiveN_Pluralverb","Atest11111f_Pluralnoun_Verb2_ProgressiveN",
 "Atest111111c_Verb2_ProgressiveN_Singularverb", "Atest111111f_Singularnoun_Verb2_ProgressiveN",
 "Atest2c_Noun2_Singularnoun", "Atest2f_Singularnoun_Verb2",
 "Atest22c_Noun2_Pluralnoun", "Atest22f_Pluralnoun_Verb2",
-"Atest222c_Noun1_Pluralnoun", "Atest222f_2ndofVerb0_ProgressiveN",
-"Atest2222c_Noun0_Singularnoun",  "Atest2222f_2ndofVerb1_ProgressiveY",
-"Atest3c_Verb0", "Atest3f_2ndofVerb0_ProgressiveN",
-"Atest33c_Verb1", "Atest33f_2ndofVerb1_ProgressiveY",
+"Atest222c_Noun1_Pluralnoun", "Atest222f_Verb0_ProgressiveN",
+"Atest2222c_Noun0_Singularnoun","Atest2222f_Verb1_ProgressiveY",
+"Atest3c_Verb0", "Atest3f_2ndofVerb1_ProgressiveY",
+"Atest33c_Verb1", "Atest33f_2ndofVerb0_ProgressiveN",
 "Atest333c_Verb0", "Atest333f_2ndofNoun0_Singularnoun",
-"Atest3333c_Verb0", "Atest3333f_2ndofVerb1_ProgressiveY",
-"Atest33333c__Verb1", "Atest33333f_2ndofVerb0_ProgressiveN",
-"Atest333333c_Verb1", "Atest333333f_2ndofNoun1_Pluralnoun",
-"Atest4c_Noun1", "Atest4f_2ndofNoun1_Pluralnoun",
-"Atest44c_Noun0", "Atest44f_2ndofNoun0_Singularnoun",
+"Atest3333c_Verb1", "Atest3333f_2ndofNoun1_Pluralnoun",
+"Atest4c_Noun1", "Atest4f_2ndofNoun1_Pluralnoun" ,
+"Atest44c_Noun0","Atest44f_2ndofNoun0_Singularnoun",
 "Atest444c_Noun1", "Atest444f_2ndofVerb1_ProgressiveY",
-"Atest4444c_Noun0", "Atest4444f_2ndofNoun1_Pluralnoun",
-"Atest44444c_Noun0", "Atest44444f_2ndofVerb0_ProgressiveN",
-"Atest444444c_Noun1", "Atest444444f_2ndofNoun0_Singularnoun")
+"Atest4444c_Noun0","Atest4444f_2ndofVerb0_ProgressiveN" )
 
+print(len(Atest))
+print(len(Atestnamelist))
 
 teststim(Atest, Atestnamelist)
 
@@ -580,7 +511,7 @@ teststim(Btest,  Btestnamelist)
 teststim(Ctest,  Ctestnamelist)
 teststim(Dtest,  Dtestnamelist)
 
-"""
+
 #######
 
 #######LANGUAGE
@@ -597,3 +528,4 @@ teststim(Dtest,  Dtestnamelist)
 #   Use.append(random.sample(syllableGroup, k=1))
 #random.shuffle(Syllables)
 #random.shuffle(Syllables)
+"""
