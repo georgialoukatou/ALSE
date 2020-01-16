@@ -30,10 +30,9 @@ win = visual.Window(fullscr="TRUE")
 now = datetime.now() 
 dt_string = now.strftime("%d/%m/%Y_%H:%M:%S")
 
-#####################
+########FUNCTIONS
 
-
-###Select train files and raise RuntimeError if not
+#Select train files and raise RuntimeError if not
 def getfiles(path, list, list2):
   items = [f for f in os.listdir(path) if os.path.isfile( os.path.join(path, f) )]
   for item in items:
@@ -186,7 +185,7 @@ def trackanswers(testlist):
  return(results)
 
 
-#########TRIALS
+#########TEST TRIALS
 numberoftrial=0
 for trial in alltesttrials:
     numberoftrial=numberoftrial+1
