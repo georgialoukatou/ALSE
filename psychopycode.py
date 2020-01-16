@@ -1,34 +1,39 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import division
 from datetime import datetime
-#from psychopy import psychtoolbox as ptb
+import psychtoolbox as ptb
 from psychopy import visual, core, event, sound
-import time, os
-import csv, random
-import pyglet
+import os,  csv, random
+
 
 group="groupA"
+uniqueid="1"
 
+################### Variables
 datafile = open("/Users/admin/Documents/artificialLanguageSegmentation/datafile.csv", 'a')
 datafile = csv.writer(datafile, delimiter=",")
-
+#register=str("uniqueid, group, numberoftrial, datetime, thisResp, stim1, stim2, clock3 before test function,clock0 before playing 1, clock0 after playing 1, clock0 before playing 2, clock0 after playing 2, clock 3 before tracking answer, thisKey, clock1 while pressing key, clock3 after tracking answer").split(",")
+#datafile.writerow(register)
 path_train_video="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/"
+
+###
 path_test_audio="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/test_sample/"
+test_1=[path_test_audio + 'Atest1f_Pluralnoun_Verb2_ProgressiveY.aiff', path_test_audio + 'Atest1c_Verb2_ProgressiveY_Pluralverb.aiff' ]
+test_2=[path_test_audio + 'Atest2c_Noun2_Singularnoun.aiff', path_test_audio + 'Atest2f_Singularnoun_Verb2.aiff' ]
+test_3=[path_test_audio + 'Atest3c_Verb0.aiff', path_test_audio + 'Atest3f_2ndofVerb0_ProgressiveN.aiff' ]
+test_4=[path_test_audio +  'Atest4f_2ndofNoun1_Pluralnoun.aiff', path_test_audio + 'Atest4c_Noun1.aiff']
+alltesttrials=[test_1, test_2]
 
-video="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.mov"
-
+###
 win = visual.Window(fullscr="TRUE")
-mov = visual.MovieStim3(win, video,pos=[0, 100],flipVert=False, flipHoriz=False)
-clock = core.Clock()
-if clock < 5:
-    mov = visual.MovieStim3(win, video,pos=[0, 100],flipVert=False, flipHoriz=False )
-else:
-    mov.stop()
+now = datetime.now() 
+dt_string = now.strftime("%d/%m/%Y_%H:%M:%S")
+
+#####################
 
 
-#####Select train files and raise RuntimeError if not
+###Select train files and raise RuntimeError if not
 def getfiles(path, list, list2):
   items = [f for f in os.listdir(path) if os.path.isfile( os.path.join(path, f) )]
   for item in items:
@@ -39,7 +44,6 @@ def getfiles(path, list, list2):
    if not os.path.exists(path):
        raise RuntimeError("File could not be found:" + path)
    list2.append(path)
-
 
 def get_keypress():
     keys = event.waitKeys()
@@ -60,12 +64,10 @@ sound_list=list()
 video_file=list()
 video_list=list()
 
-
 #getfiles(path_train_audio, audio_file, sound_list)
 getfiles(path_train_video, video_file, video_list)
-
 print(video_list)
-print(sound_list)
+
 
 """
 #Attribute  identifier to subject
