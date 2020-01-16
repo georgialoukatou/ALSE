@@ -69,57 +69,31 @@ getfiles(path_train_video, video_file, video_list)
 print(video_list)
 
 
-"""
-#Attribute  identifier to subject
-import random
-for x in range(1):
-  uniqueid=random.randint(1,1000)
-# datetime object containing current date and time
 
+#######INTRODUCTION
+def showinstructions(string, waittime):
+    instructions1=visual.TextStim(win, text=string)
+    instructions1.draw()
+    win.flip()
+    core.wait(waittime)
+    clock = core.Clock()
+    key = get_keypress()
+    stoporcontinue(key)
 
-now = datetime.now() 
-# dd/mm/YY H:M:S
-dt_string = now.strftime("%d/%m/%Y_%H:%M:%S")
-print("date and time =", dt_string)
-"""
-#######TRAIN
-#fixation = visual.GratingStim(win=win, size=2, pos=[0,0], sf=0, rgb=-1)
-fixation = visual.GratingStim(win=win)
-instructions1=visual.TextStim(win, text="Welcome to this experiment."+ "\n" + "From now on, press SPACE to continue, or ESC  to quit.")
-instructions1.draw()
-win.flip()
-core.wait(0.5)
-clock = core.Clock()
-key = get_keypress()
-stoporcontinue(key)
+text1="Bienvenue a cette experience!"
+text1_="Dorenavant, appuyes sur ESPACE pour continuer, ou sur ECHAPPER pour quitter."
+text2="Tu vas entendre des phrases a une langue unconnue." +"\n"+ "Chaque phrase decrit ce que les animaux font dans l'ecran, quand tu l'entends."
+text2_="Merci de faire attention, il y  aura bientot  un test sur tes connaissances sur la langue."
+text3="Appuyes sur ESPACE  pour commencer l'apprentissage, et appuyes sur ESPACE chaque fois que tu veux entendre une nouvelle phrase."
+showinstructions(text1, 0.5)
+showinstructions(text1_, 0.5)
+showinstructions(text2, 0.5)
+showinstructions(text2_, 0.5)
+showinstructions(text3, 0.5)
 
-
-instructions2=visual.TextStim(win, text="You will hear sentences in an unknown language." +"\n"+ "The sentences decsribe what animals do on screen."  )
-instructions2.draw()
-win.flip()
-core.wait(0.5)
-clock = core.Clock()
-key = get_keypress()
-stoporcontinue(key)
-
-instructions3=visual.TextStim(win, text="Please pay attention, there will soon be a test on your knowledge of the language."  +"\n"+ "Press SPACE to start the training phase.")
-instructions3.draw()
-win.flip()
-core.wait(0.5)
-clock = core.Clock()
-key = get_keypress()
-stoporcontinue(key)
-
-
-mov = visual.MovieStim(myWin, 'A_Disrupter0_noun0_Singularnoun_verb1_ProgressiveY_Singularverb_Disrupter0_2.mov', flipVert=False)
-mov.draw()
-
-y=0
+########TRAINING
 random.shuffle(video_list)
 for i, video in enumerate(video_list): 
-#   y=y+1
-#   if y <2:
-    #videoname=str(video).replace("/Users/lscpuser/Documents/ALSE/pilot4/train_mov/"+ str(group) + "/", "").replace(".mov","")
     videoname=str(video).replace("/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/", "").replace(".mov","")
     print(videoname)
     key = get_keypress()
@@ -128,41 +102,37 @@ for i, video in enumerate(video_list):
     win.update()
     core.wait(0.5)
     mov = visual.MovieStim(win, video,flipVert=False, flipHoriz=False)
-    shouldflip = mov.play() ####playvideo
     nextFlip=win.getFutureFlipTime(clock='ptb')
     while mov.status != visual.FINISHED:
         mov.draw()
         win.flip()
-    #  if shouldflip:     
-     #    win.flip()
-      #else:
-       #  time.sleep(0.001)
-      #shouldflip = mov.draw()
 
-print("hi")
+        
+#########TEST
+win.flip()
+core.wait(2)
 
-            
-
+text4="Maintenant, tu vas entendre DEUX choses."
+text4_="Attention, tu vas les entendre juste une fois!"
+text5="Quel son va mieux a la langue que tu viens d'entendre?"
+text5_="N'y penses pas trop et suis ton instinct!"
+text6="Appuyes A si tu penses que le premier son (son 1 ) va mieux a la langue que tu viens d'entendre, et L si tu penses que le deuxieme son (son  2) lui va mieux."
+showinstructions(text4, 0.5)
+showinstructions(text4_, 0.5)
+showinstructions(text5, 0.5)
+showinstructions(text5_, 0.5)
+showinstructions(text6, 0.5)
 
 win.flip()
-"""
+core.wait(2)
 
-#######TEST
 
-test_1=[path_test_audio + 'Atest1f_Pluralnoun_Verb2_ProgressiveY.aiff', path_test_audio + 'Atest1c_Verb2_ProgressiveY_Pluralverb.aiff' ]
-test_2=[path_test_audio + 'Atest2c_Noun2_Singularnoun.aiff', path_test_audio + 'Atest2f_Singularnoun_Verb2.aiff' ]
-test_3=[path_test_audio + 'Atest3c_Verb0.aiff', path_test_audio + 'Atest3f_2ndofVerb0_ProgressiveN.aiff' ]
-test_4=[path_test_audio +  'Atest4f_2ndofNoun1_Pluralnoun.aiff', path_test_audio + 'Atest4c_Noun1.aiff']
-
-testid=[]
 def presentest(testlist):
  clock0=core.Clock()
  soundNumber=0
  for soun in testlist:
             soundNumber=soundNumber+1
             aud =sound.Sound(soun)
-            print(aud)
-            print(soundNumber)
             if soundNumber==1:
                teststim=visual.TextStim(win, text=soundNumber, pos=(-0.5,0.2))
                teststim.draw()
@@ -173,36 +143,41 @@ def presentest(testlist):
             nextFlip=win.getFutureFlipTime(clock='ptb')           
             print("clock0 before playing"+ str(soundNumber))
             onset.append(clock0.getTime())
+            print(onset)
             aud.play(when=nextFlip)
-            print("clock0 after playing" + str(soundNumber))
-            print(clock0.getTime())
             win.flip()
-            #if soundNumber <len(testlist):
-            core.wait(1)
+            print("clock0 after playing" + str(soundNumber))
+            onset.append(clock3.getTime())
+            print(clock0.getTime())
+            if soundNumber <len(testlist):
+                core.wait(1)
+            else:
+                core.wait(0.5)
+
 
 def trackanswers(testlist):
  results=[]
  clock1 = core.Clock()
  allKeys=event.waitKeys(keyList=["a", "l", "q"], timeStamped=clock1)
- print("clock1 after pressing")
+ print("clock1 while pressing keys")
  onset.append(allKeys)
+ print(onset)
  thisResp=""
  for thisKey in allKeys:
         if thisKey[0]=="a":
             if "c_" in testlist[0]:
-              thisResp ="correct" # correct
-#             datafile.writerow([uniqueid, dt_string, thisResp, testlist, thisKey])
-              results.append([uniqueid, dt_string, thisResp, testlist, thisKey])
+              thisResp ="correct" 
+              results.append([uniqueid, group, numberoftrial, dt_string, thisResp, testlist])
             else:
               thisResp = "wrong"
-              results.append([uniqueid, dt_string, thisResp, testlist, thisKey])
+              results.append([uniqueid, group, numberoftrial, dt_string, thisResp, testlist])
         elif thisKey[0]=="l":
             if "c_" in testlist[1]:
               thisResp="correct"
-              results.append([uniqueid, dt_string, thisResp, testlist, thisKey])
+              results.append([uniqueid, group, numberoftrial,  dt_string, thisResp, testlist])
             else:
               thisResp = "wrong"
-              results.append([uniqueid, dt_string, thisResp, testlist, thisKey])
+              results.append([uniqueid, group, numberoftrial, dt_string,  thisResp, testlist])
         elif thisKey in ['Esc', 'escape']:         
             event.clearEvents()
         elif thisKey=='p':
@@ -210,117 +185,34 @@ def trackanswers(testlist):
             trackanswers(testlist)
  return(results)
 
-"""
-####question 
-"""
-core.wait(2)
-instructions4 = visual.TextStim(win, text="Now, you are going to hear 2 things. You will hear them only once." )
-instructions4.draw()
-win.flip()
-core.wait(0.5)
-clock = core.Clock()
-key = get_keypress()
-stoporcontinue(key)
 
-instructions5 = visual.TextStim(win, text="Which one sounds better for the language you just heard?" + "Don't overthink it and go with your gut." + "\n"+"Press A for 1 and L for 2." )
-instructions5.draw()
-win.flip()
-core.wait(0.5)
-clock = core.Clock()
-key = get_keypress()
-stoporcontinue(key)
-
-#present stimuli 1
-onset=[]
-question = visual.TextStim(win, text="")
-question.draw()
-win.flip()
-core.wait(2)
-print("start clock3")
-clock3=core.Clock()
-presentest(test_1)
-#record answer
-win.flip()
-print("clock3 after presenting and before collecting")
-onset.append(clock3.getTime())
-answer=trackanswers(test_1)
-print("clock3 after collecting")
-print(clock3.getTime())
-
-sum=float(onset[3][0][1]) + float(onset[2])
-onset[3]=sum
-datafile.writerow([answer, onset])
+#########TRIALS
+numberoftrial=0
+for trial in alltesttrials:
+    numberoftrial=numberoftrial+1
+    onset=[]
+    clock3=core.Clock()
+    onset.append(clock3.getTime())
+    print("clock3 before stimuli function:")
+    print(onset)
+    presentest(trial)
+    win.flip()
+    print("clock3 before tracking answer")
+    onset.append(clock3.getTime())
+    print(onset)
+    answer=trackanswers(trial)
+    onset.append(clock3.getTime())
+    print("clock3 after tracking answer")
+    print(onset)
+    #sum=float(onset[3][0][1]) + float(onset[2])
+    #onset[3]=sum
+    tosave=([answer,onset])
+    tosave=str(tosave).replace("[", "").replace("]", "")
+    listanswer=tosave.split(",")
+    datafile.writerow(listanswer)
+    core.wait(1)
 
 
-
-
-
-#present stimuli 4
-onset=[]
-question = visual.TextStim(win, text="")
-question.draw()
-win.flip()
-core.wait(2)
-print("start clock3")
-clock3=core.Clock()
-presentest(test_4)
-#record answer
-win.flip()
-print("clock3 after presenting and before collecting")
-onset.append(clock3.getTime())
-answer=trackanswers(test_4)
-print("clock3 after collecting")
-print(clock3.getTime())
-
-sum=float(onset[3][0][1]) + float(onset[2])
-onset[3]=sum
-datafile.writerow([answer, onset])
-
-instructions6=visual.TextStim(win, text="Please press space to continue the test phase and escape to quit")
-instructions6.draw()
-win.flip()
-core.wait(0.5)
-clock = core.Clock()
-key = get_keypress()
-stoporcontinue(key)
-
-
-fixation = visual.GratingStim(win=win, size=2, pos=[0,0], sf=0, rgb=-1)
-instructionslast=visual.TextStim(win, text="Thank you! You can now call the experimenter.")
-instructionslast.draw()
-win.flip()
-core.wait(0.5)
-presstocontinue()
-win.close()
-core.quit()
-
-#present stimuli 5
-onset=[]
-question = visual.TextStim(win, text="")
-question.draw()
-win.flip()
-core.wait(2)
-print("start clock3")
-clock3=core.Clock()
-presentest(test_5)
-#record answer
-win.flip()
-print("clock3 after presenting and before collecting")
-onset.append(clock3.getTime())
-answer=trackanswers(test_5)
-print("clock3 after collecting")
-print(clock3.getTime())
-
-sum=float(onset[3][0][1]) + float(onset[2])
-onset[3]=sum
-datafile.writerow([answer, onset])
-
-
-win.flip()
-
-
-
-"""
 """
 #random.shuffle(sound_list)
 #for i, video in enumerate(video_list): 
@@ -346,4 +238,8 @@ win.flip()
 #                else:
 #                    time.sleep(0.001)
 #                shouldflip = mov.draw()
+
+#Attribute  identifier to subject
+#for x in range(1):
+#  uniqueid=random.randint(1,1000)
 """
