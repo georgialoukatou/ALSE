@@ -11,15 +11,16 @@ group="groupA"
 uniqueid="1"
 
 ################### Variables
-datafile = open("/Users/admin/Documents/artificialLanguageSegmentation/datafile.csv", 'a')
+datafile = open("/Users/admin/Documents/artificialLanguageSegmentation-master/datafile.csv", 'a')
 datafile = csv.writer(datafile, delimiter=",")
 #register=str("uniqueid, group, numberoftrial, datetime, thisResp, stim1, stim2, clock3 before test function,clock0 before playing 1, clock0 after playing 1, clock0 before playing 2, clock0 after playing 2, clock 3 before tracking answer, thisKey, clock1 while pressing key, clock3 after tracking answer").split(",")
 #datafile.writerow(register)
-path_train_video="/Users/admin/Documents/artificialLanguageSegmentation/train_audiovideo/"
+path_train_video="/Users/admin/Documents/artificialLanguageSegmentation-master/train-correctvideos/"
+
 ####path_train_video="/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/"
 
 
-path_test_audio="/Users/admin/Documents/artificialLanguageSegmentation/test/"
+path_test_audio="/Users/admin/Documents/artificialLanguageSegmentation-master/test/"
 test_1=[path_test_audio + 'Atest1c_Verb2_ProgressiveY_Pluralverb.aiff', path_test_audio + 'Atest1f_Pluralnoun_Verb2_ProgressiveY.aiff' ]
 test_2=[path_test_audio + 'Atest2f_Singularnoun_Verb2.aiff', path_test_audio + 'Atest2c_Noun2_Singularnoun.aiff' ]
 test_3=[path_test_audio + 'Atest3c_Verb0.aiff', path_test_audio + 'Atest3f_2ndofVerb1_ProgressiveY.aiff' ]
@@ -113,9 +114,17 @@ showinstructions(text1_, 0.5)
 showinstructions(text2, 0.5)
 showinstructions(text2_, 0.5)
 showinstructions(text3, 0.5)
-
+movies=[]   
 ########TRAINING
 random.shuffle(video_list)
+
+if "/Users/admin/Documents/artificialLanguageSegmentation-master/train_audiovideo/.DS_Store" in video_list:
+ video_list.remove("/Users/admin/Documents/artificialLanguageSegmentation-master/train_audiovideo/.DS_Store")
+
+#for i, video_name in enumerate(video_list): 
+#	movies.append(visual.MovieStim3(win, video_name))
+
+
 for i, video in enumerate(video_list): 
     videoname=str(video).replace("/Users/admin/Documents/artificialLanguageSegmentation/pilot5/new/", "").replace(".mov","")
     print(videoname)
@@ -124,11 +133,21 @@ for i, video in enumerate(video_list):
     fixation.draw()
     win.update()
     core.wait(0.5)
-    mov = visual.MovieStim2(win, video,flipVert=False, flipHoriz=False)
-    nextFlip=win.getFutureFlipTime(clock='ptb')
+    mov = visual.MovieStim3(win, video,flipVert=False, flipHoriz=False)
     while mov.status != visual.FINISHED:
         mov.draw()
         win.flip()
+
+#for movie in movies: 
+#    key = get_keypress()
+#    stoporcontinue(key)
+#    fixation.draw()
+#    win.update()
+#    core.wait(0.5)
+#    #mov=visual.MovieStim3(win,movie)
+#    while movie.status != visual.FINISHED:
+#        movie.draw()
+#        win.flip()
 
         
 #########TEST
