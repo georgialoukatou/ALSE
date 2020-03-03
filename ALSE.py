@@ -1,7 +1,16 @@
 from os import system
 import random
+import os.path
+import sox
+import subprocess
 
-trainoutput=open("/Users/admin/Documents/new/output.csv", 'a')
+def bash_command(cmd):
+    subprocess.Popen(cmd, shell=True, executable='/bin/bash')
+
+trainpath='/Users/admin/Documents/datafiles/final1/trainsounds1/'
+#testpath='/Users/admin/Documents/datafiles/final1/testsounds/'
+trainoutput=open("/Users/admin/Documents/datafiles/final1/output.csv", 'a')
+testoutput=open("/Users/admin/Documents/datafiles/final1/testoutput.csv", 'a')
 
 Syllables=[]
 
@@ -39,22 +48,42 @@ def stringtoPhon(string):
   phon=str(string).replace("[","").replace("]","").replace("'","").replace(" - ","").replace(", ", "")
   return phon
 
-def trainstim(sentence, name):
+def trainstim(sentence, name, group):
  count=0
  for element in sentence:
 #  trainoutput.write(element + str("\n"))
   element=stringtoPhon(element)
-  system('say -o  ~/Users/admin/Documents/new/testsounds/{}.aiff  {}'.format(name[count], element)) 
+  system('say -o  /Users/admin/Documents/datafiles/final1/trainsounds1/{}.aiff  -v Paulina -r 140 {}'.format(name[count], element)) 
+  title=name[count]
+  print(title)
+  title1=str(trainpath) + str(title) + '.aiff'
+  print(title1)
+  title2=str(trainpath) + str(group)+ '/'  + str(title) + '_sil.aiff'
+  title_=sox.Transformer()
+  title_.pad(1.8,1)    #  bash_command('sox title1 title2 pad 1 1')
+  title_.build(title1, title2)
+  title_.effects_log
   count=count+1
 
-def teststim(list, name):
+"""
+#!!! Attention for group C, test 3F, 444F, 444444F 'single' has a weird pronunciation
+def teststim(list, name, group):
  count=0
  for example in list:
    #  example=stringtoPhon(example)
-   system('say -o  ~/Users/admin/Documents/new/trainsounds/{}.aiff  {}'.format(name[count],  example))
+   system('say -o  /Users/admin/Documents/datafiles/final1/testsounds/{}.aiff -v Paulina -r 140 {}'.format(name[count],  example))
+   title=name[count]
+   print(title)
+   title1=str(testpath) + str(title) + '.aiff'
+   print(title1)
+   title2=str(testpath) + str(group)+ '/'  + str(title) + '_sil.aiff'
+   title_=sox.Transformer()
+   title_.pad(0.4,0.1)    #  bash_command('sox title1 title2 pad 1 1')
+   title_.build(title1, title2)
+   title_.effects_log
    count=count+1
    
-   
+ """  
    
    
 Syllables=["glu","sin",  "ga",  "kli",  "ten",  "ko",  "blu", "tun",  "man",  "blo", "ti", "gle" ,"da", "pun",  "go", "kan", "fen", "bi"]
@@ -92,7 +121,7 @@ print(ANoun, AVerb, ADisrupter1, ADisrupter2, ASingularNoun, ASingularVerb, APlu
 
 ##########Group B
 
-BNoun.append(str(Syllables[17]+ Syllables[16]))
+BNoun.append(str(Syllables[6]+ Syllables[16]))
 BNoun.append(str(Syllables[15]+ Syllables[14]))
 BNoun.append(str(Syllables[13]))
 
@@ -105,7 +134,7 @@ BVerb.append(str(Syllables[8]))
 BDisrupter1.append("")
 BDisrupter1.append(str(Syllables[7]))
 BDisrupter2.append("")
-BDisrupter2.append(str(Syllables[6]))
+BDisrupter2.append(str(Syllables[17]))
 
 
 
@@ -157,7 +186,7 @@ DNoun.append(str(Syllables[12]))
 
 
 DVerb.append(str(Syllables[13]+ Syllables[14]))
-DVerb.append(str(Syllables[15]+ Syllables[16]))
+DVerb.append(str(Syllables[3]+ Syllables[16]))
 DVerb.append(str(Syllables[17]))
 
 
@@ -169,7 +198,7 @@ DDisrupter2.append(str(Syllables[1]))
 
 
 DSingularNoun= str(Syllables[2])
-DSingularVerb= str(Syllables[3])
+DSingularVerb= str(Syllables[15])
 DPluralNoun= str(Syllables[4])
 DPluralVerb=  str(Syllables[5])
 DProgressiveY= str(Syllables[6])
@@ -708,7 +737,7 @@ Atrainnamelist=["1_ADisrupter1[0]_ANoun[0]_ASingularNoun_AVerb[2]_AProgressiveN_
 
 print(len(ASentence))
 print(len(Atrainnamelist))
-trainstim(ASentence, Atrainnamelist)
+
 
 
 
@@ -813,7 +842,6 @@ Btrainnamelist=["1_BDisrupter1[0]_BNoun[0]_BSingularNoun_BVerb[2]_BProgressiveN_
 
 print(len(BSentence))
 print(len(Btrainnamelist))
-trainstim(BSentence, Btrainnamelist)
 
 
 
@@ -917,7 +945,6 @@ Ctrainnamelist=["1_CDisrupter1[0]_CNoun[0]_CSingularNoun_CVerb[2]_CProgressiveN_
 
 print(len(CSentence))
 print(len(Ctrainnamelist))
-trainstim(CSentence, Ctrainnamelist)
 
 
 Dtrainnamelist=["1_DDisrupter1[0]_DNoun[0]_DSingularNoun_DVerb[2]_DProgressiveN_DSingularVerb_DDisrupter2[0]",
@@ -1023,7 +1050,6 @@ Dtrainnamelist=["1_DDisrupter1[0]_DNoun[0]_DSingularNoun_DVerb[2]_DProgressiveN_
 
 print(len(DSentence))
 print(len(Dtrainnamelist))
-trainstim(DSentence, Dtrainnamelist)
 
 
 
@@ -1048,7 +1074,7 @@ Atest11111f_Pluralnoun_Verb2_ProgressiveN = APluralNoun + AVerb[2] + AProgressiv
 Atest111111c_Verb2_ProgressiveN_Singularverb = AVerb[2] + AProgressiveN + ASingularVerb #0.5 0.5
 Atest111111f_Singularnoun_Verb2_ProgressiveN = ASingularNoun + AVerb[2] + AProgressiveN
 Atest1111111c_Verb0_ProgressiveN_Singularverb = AVerb[0] + AProgressiveN + ASingularVerb # 1 + 1  + 0.5
-Atest1111111f__Noun0_Singularnoun_Verb2 = ANoun[0] + ASingularNoun +  AVerb[2] 
+Atest1111111f_Noun0_Singularnoun_Verb2 = ANoun[0] + ASingularNoun +  AVerb[2] 
 Atest11111111c_Verb1_ProgressiveY_Pluralverb = AVerb[1] + AProgressiveY + APluralVerb # 1 + 1 + 0.5
 Atest11111111f_Noun1_Pluralnoun_Verb2 = ANoun[1] + APluralNoun + AVerb[2]
 
@@ -1069,7 +1095,7 @@ Btest11111f_Pluralnoun_Verb2_ProgressiveN = BPluralNoun + BVerb[2] + BProgressiv
 Btest111111c_Verb2_ProgressiveN_Singularverb = BVerb[2] + BProgressiveN + BSingularVerb #0.5 0.5
 Btest111111f_Singularnoun_Verb2_ProgressiveN = BSingularNoun + BVerb[2] + BProgressiveN
 Btest1111111c_Verb0_ProgressiveN_Singularverb = BVerb[0] + BProgressiveN + BSingularVerb # 1 + 1  + 0.5
-Btest1111111f__Noun0_Singularnoun_Verb2 = BNoun[0] + BSingularNoun +  BVerb[2] 
+Btest1111111f_Noun0_Singularnoun_Verb2 = BNoun[0] + BSingularNoun +  BVerb[2] 
 Btest11111111c_Verb1_ProgressiveY_Pluralverb = BVerb[1] + BProgressiveY + BPluralVerb # 1 + 1 + 0.5
 Btest11111111f_Noun1_Pluralnoun_Verb2 = BNoun[1] + BPluralNoun + BVerb[2]
 
@@ -1088,7 +1114,7 @@ Ctest11111f_Pluralnoun_Verb2_ProgressiveN = CPluralNoun + CVerb[2] + CProgressiv
 Ctest111111c_Verb2_ProgressiveN_Singularverb = CVerb[2] + CProgressiveN + CSingularVerb #0.5 0.5
 Ctest111111f_Singularnoun_Verb2_ProgressiveN = CSingularNoun + CVerb[2] + CProgressiveN
 Ctest1111111c_Verb0_ProgressiveN_Singularverb = CVerb[0] + CProgressiveN + CSingularVerb # 1 + 1  + 0.5
-Ctest1111111f__Noun0_Singularnoun_Verb2 = CNoun[0] + CSingularNoun +  CVerb[2] 
+Ctest1111111f_Noun0_Singularnoun_Verb2 = CNoun[0] + CSingularNoun +  CVerb[2] 
 Ctest11111111c_Verb1_ProgressiveY_Pluralverb = CVerb[1] + CProgressiveY + CPluralVerb # 1 + 1 + 0.5
 Ctest11111111f_Noun1_Pluralnoun_Verb2 = CNoun[1] + CPluralNoun + CVerb[2]
 
@@ -1109,7 +1135,7 @@ Dtest11111f_Pluralnoun_Verb2_ProgressiveN = DPluralNoun + DVerb[2] + DProgressiv
 Dtest111111c_Verb2_ProgressiveN_Singularverb = DVerb[2] + DProgressiveN + DSingularVerb #0.5 0.5
 Dtest111111f_Singularnoun_Verb2_ProgressiveN = DSingularNoun + DVerb[2] + DProgressiveN
 Dtest1111111c_Verb0_ProgressiveN_Singularverb = DVerb[0] + DProgressiveN + DSingularVerb # 1 + 1  + 0.5
-Dtest1111111f__Noun0_Singularnoun_Verb2 = DNoun[0] + DSingularNoun +  DVerb[2] 
+Dtest1111111f_Noun0_Singularnoun_Verb2 = DNoun[0] + DSingularNoun +  DVerb[2] 
 Dtest11111111c_Verb1_ProgressiveY_Pluralverb = DVerb[1] + DProgressiveY + DPluralVerb # 1 + 1 + 0.5
 Dtest11111111f_Noun1_Pluralnoun_Verb2 = DNoun[1] + DPluralNoun + DVerb[2]
 
@@ -1193,21 +1219,21 @@ Atest33333333f_2ndofNoun0_Singularnoun  =  ANoun[0][3:6]+ ASingularNoun
 
 
 Btest3c_Verb0  = BVerb[0]
-Btest3f_2ndofVerb1_ProgressiveY = BVerb[1][2:5]+ BProgressiveY
+Btest3f_2ndofVerb1_ProgressiveY = BVerb[1][3:6]+ BProgressiveY
 Btest33c_Verb1  = BVerb[1]
-Btest33f_2ndofVerb0_ProgressiveN = BVerb[0][2:5] + BProgressiveN
+Btest33f_2ndofVerb0_ProgressiveN = BVerb[0][3:6] + BProgressiveN
 Btest333c_Verb0  = BVerb[0]
-Btest333f_2ndofNoun0_Singularnoun  =  BNoun[0][2:5]+ BSingularNoun 
+Btest333f_2ndofNoun0_Singularnoun  =  BNoun[0][3:6]+ BSingularNoun 
 Btest3333c_Verb1  = BVerb[1]
 Btest3333f_2ndofNoun1_Pluralnoun  = BNoun[1][3:6]+ BPluralNoun 
 Btest33333c_Verb0  = BVerb[0]
 Btest33333f_2ndofNoun1_Pluralnoun  = BNoun[1][3:6]+ BPluralNoun 
 Btest333333c_Verb1  = BVerb[1]
-Btest333333f_2ndofVerb1_ProgressiveY = BVerb[1][2:5]+ BProgressiveY
+Btest333333f_2ndofVerb1_ProgressiveY = BVerb[1][3:6]+ BProgressiveY
 Btest3333333c_Verb0  = BVerb[0]
-Btest3333333f_2ndofVerb0_ProgressiveN = BVerb[0][2:5] + BProgressiveN
+Btest3333333f_2ndofVerb0_ProgressiveN = BVerb[0][3:6] + BProgressiveN
 Btest33333333c_Verb1  = BVerb[1]
-Btest33333333f_2ndofNoun0_Singularnoun  =  BNoun[0][2:5]+ BSingularNoun 
+Btest33333333f_2ndofNoun0_Singularnoun  =  BNoun[0][3:6]+ BSingularNoun 
 
 
 
@@ -1276,7 +1302,7 @@ Atest44444444f_2ndofNoun0_Singularnoun  =  ANoun[0][3:6]+ ASingularNoun
 Btest4c_Noun1 = BNoun[1]
 Btest4f_2ndofNoun1_Pluralnoun  =  BNoun[1][3:6]+ BPluralNoun
 Btest44c_Noun0 = BNoun[0]
-Btest44f_2ndofNoun0_Singularnoun  =  BNoun[0][2:5]+ BSingularNoun 
+Btest44f_2ndofNoun0_Singularnoun  =  BNoun[0][3:6]+ BSingularNoun 
 Btest444c_Noun1 =  BNoun[1]
 Btest444f_2ndofVerb1_ProgressiveY =  BVerb[1][2:5]+ BProgressiveY
 Btest4444c_Noun0 =  BNoun[0]
@@ -1288,7 +1314,7 @@ Btest444444f_2ndofVerb1_ProgressiveY =  BVerb[1][2:5]+ BProgressiveY
 Btest4444444c_Noun1 = BNoun[1]
 Btest4444444f_2ndofNoun1_Pluralnoun  =  BNoun[1][3:6]+ BPluralNoun
 Btest44444444c_Noun0 = BNoun[0]
-Btest44444444f_2ndofNoun0_Singularnoun  =  BNoun[0][2:5]+ BSingularNoun 
+Btest44444444f_2ndofNoun0_Singularnoun  =  BNoun[0][3:6]+ BSingularNoun 
 
 
 Ctest4c_Noun1 = CNoun[1]
@@ -1337,7 +1363,7 @@ Atest111c_Verb0_ProgressiveN_Singularverb, Atest111f_Noun1_Pluralnoun_Verb2,
 Atest1111c_Verb1_ProgressiveY_Pluralverb,Atest1111f_Noun0_Singularnoun_Verb2,
 Atest11111c_Verb2_ProgressiveN_Pluralverb,Atest11111f_Pluralnoun_Verb2_ProgressiveN,
 Atest111111c_Verb2_ProgressiveN_Singularverb, Atest111111f_Singularnoun_Verb2_ProgressiveN,
-Atest1111111c_Verb0_ProgressiveN_Singularverb, Atest1111111f__Noun0_Singularnoun_Verb2,
+Atest1111111c_Verb0_ProgressiveN_Singularverb, Atest1111111f_Noun0_Singularnoun_Verb2,
 Atest11111111c_Verb1_ProgressiveY_Pluralverb,Atest11111111f_Noun1_Pluralnoun_Verb2,
 Atest2c_Noun2_Singularnoun, Atest2f_Singularnoun_Verb2,
 Atest22c_Noun2_Pluralnoun, Atest22f_Pluralnoun_Verb2,
@@ -1366,40 +1392,38 @@ Atest44444444c_Noun0,Atest44444444f_2ndofNoun0_Singularnoun
 
 Atestnamelist=("Atest1c_Verb2_ProgressiveY_Pluralverb","Atest1f_Pluralnoun_Verb2_ProgressiveY",
 "Atest11c_Verb2_ProgressiveY_Singularverb","Atest11f_Singularnoun_Verb2_ProgressiveY",
-"Atest111c_Verb0_ProgressiveN_Singularverb", "Atest111f_Noun1_Pluralnoun_Verb2",
-"Atest1111c_Verb1_ProgressiveY_Pluralverb","Atest1111f_Noun0_Singularnoun_Verb2",
+"Atest111c_Atest1111111c_Verb0_ProgressiveN_Singularverb", "Atest111f_Atest11111111f_Noun1_Pluralnoun_Verb2",
+"Atest1111c_Atest11111111c_Verb1_ProgressiveY_Pluralverb","Atest1111111f_Atest1111f_Noun0_Singularnoun_Verb2",
 "Atest11111c_Verb2_ProgressiveN_Pluralverb","Atest11111f_Pluralnoun_Verb2_ProgressiveN",
 "Atest111111c_Verb2_ProgressiveN_Singularverb", "Atest111111f_Singularnoun_Verb2_ProgressiveN",
-"Atest1111111c_Verb0_ProgressiveN_Singularverb", "Atest1111111f__Noun0_Singularnoun_Verb2",
-"Atest11111111c_Verb1_ProgressiveY_Pluralverb","Atest11111111f_Noun1_Pluralnoun_Verb2",
+"Atest1111111c_Atest111c_Verb0_ProgressiveN_Singularverb", "Atest1111111f_Atest1111f_Noun0_Singularnoun_Verb2",
+"Atest11111111c_Atest1111c_Verb1_ProgressiveY_Pluralverb","Atest11111111f_Atest111f_Noun1_Pluralnoun_Verb2",
 "Atest2c_Noun2_Singularnoun", "Atest2f_Singularnoun_Verb2",
 "Atest22c_Noun2_Pluralnoun", "Atest22f_Pluralnoun_Verb2",
 "Atest222c_Noun1_Pluralnoun", "Atest222f_Verb0_ProgressiveN",
 "Atest2222c_Noun0_Singularnoun","Atest2222f_Verb1_ProgressiveY",
 "Atest22222c_Noun1_Pluralnoun", "Atest22222f_Verb1_ProgressiveY",
 "Atest222222c_Noun0_Singularnoun", "Atest222222f_Verb0_ProgressiveN",
-"Atest3c_Verb0", "Atest3f_2ndofVerb1_ProgressiveY",
-"Atest33c_Verb1", "Atest33f_2ndofVerb0_ProgressiveN",
-"Atest333c_Verb0", "Atest333f_2ndofNoun0_Singularnoun",
-"Atest3333c_Verb1", "Atest3333f_2ndofNoun1_Pluralnoun",
-"Atest33333c_Verb0", "Atest33333f_2ndofNoun1_Pluralnoun",
-"Atest333333c_Verb1","Atest333333f_2ndofVerb1_ProgressiveY",
-"Atest3333333c_Verb0", "Atest3333333f_2ndofVerb0_ProgressiveN",
-"Atest33333333c_Verb1","Atest33333333f_2ndofNoun0_Singularnoun",
-"Atest4c_Noun1", "Atest4f_2ndofNoun1_Pluralnoun" ,
-"Atest44c_Noun0","Atest44f_2ndofNoun0_Singularnoun",
-"Atest444c_Noun1", "Atest444f_2ndofVerb1_ProgressiveY",
-"Atest4444c_Noun0","Atest4444f_2ndofVerb0_ProgressiveN", 
-"Atest44444c_Noun1","Atest44444f_2ndofVerb0_ProgressiveN",
-"Atest444444c_Noun0","Atest444444f_2ndofVerb1_ProgressiveY",
-"Atest4444444c_Noun1" ,"Atest4444444f_2ndofNoun1_Pluralnoun",
-"Atest44444444c_Noun0","Atest44444444f_2ndofNoun0_Singularnoun"
+"Atest3c_Verb0", "Atest3f_Atest333333f_2ndofVerb1_ProgressiveY",
+"Atest33c_Verb1", "Atest33f_Atest3333333f_2ndofVerb0_ProgressiveN",
+"Atest333c_Verb0", "Atest333f_Atest33333333f_2ndofNoun0_Singularnoun",
+"Atest3333c_Verb1", "Atest3333f_Atest33333f_2ndofNoun1_Pluralnoun",
+"Atest33333c_Verb0", "Atest33333f_Atest3333f_2ndofNoun1_Pluralnoun",
+"Atest333333c_Verb1","Atest333333f_Atest3f_2ndofVerb1_ProgressiveY",
+"Atest3333333c_Verb0", "Atest3333333f_Atest33f_2ndofVerb0_ProgressiveN",
+"Atest33333333c_Verb1","Atest33333333f_Atest333f_2ndofNoun0_Singularnoun",
+"Atest4c_Noun1", "Atest4f_Atest4444444f_2ndofNoun1_Pluralnoun" ,
+"Atest44c_Noun0","Atest44f_Atest44444444f_2ndofNoun0_Singularnoun",
+"Atest444c_Noun1", "Atest444f_Atest444444f_2ndofVerb1_ProgressiveY",
+"Atest4444c_Noun0","Atest4444f_Atest44444f_2ndofVerb0_ProgressiveN", 
+"Atest44444c_Noun1","Atest44444f_Atest4444f_2ndofVerb0_ProgressiveN",
+"Atest444444c_Noun0","Atest444444f_Atest444f_2ndofVerb1_ProgressiveY",
+"Atest4444444c_Noun1" ,"Atest4444444f_Atest4f_2ndofNoun1_Pluralnoun",
+"Atest44444444c_Noun0","Atest44444444f_Atest44f_2ndofNoun0_Singularnoun"
 )
 
 print(len(Atest))
 print(len(Atestnamelist))
-teststim(Atest, Atestnamelist)
-
 
 
 
@@ -1411,7 +1435,7 @@ Btest111c_Verb0_ProgressiveN_Singularverb, Btest111f_Noun1_Pluralnoun_Verb2,
 Btest1111c_Verb1_ProgressiveY_Pluralverb,Btest1111f_Noun0_Singularnoun_Verb2,
 Btest11111c_Verb2_ProgressiveN_Pluralverb,Btest11111f_Pluralnoun_Verb2_ProgressiveN,
 Btest111111c_Verb2_ProgressiveN_Singularverb, Btest111111f_Singularnoun_Verb2_ProgressiveN,
-Btest1111111c_Verb0_ProgressiveN_Singularverb, Btest1111111f__Noun0_Singularnoun_Verb2,
+Btest1111111c_Verb0_ProgressiveN_Singularverb, Btest1111111f_Noun0_Singularnoun_Verb2,
 Btest11111111c_Verb1_ProgressiveY_Pluralverb,Btest11111111f_Noun1_Pluralnoun_Verb2,
 Btest2c_Noun2_Singularnoun, Btest2f_Singularnoun_Verb2,
 Btest22c_Noun2_Pluralnoun, Btest22f_Pluralnoun_Verb2,
@@ -1440,39 +1464,41 @@ Btest44444444c_Noun0,Btest44444444f_2ndofNoun0_Singularnoun
 
 Btestnamelist=("Btest1c_Verb2_ProgressiveY_Pluralverb","Btest1f_Pluralnoun_Verb2_ProgressiveY",
 "Btest11c_Verb2_ProgressiveY_Singularverb","Btest11f_Singularnoun_Verb2_ProgressiveY",
-"Btest111c_Verb0_ProgressiveN_Singularverb", "Btest111f_Noun1_Pluralnoun_Verb2",
-"Btest1111c_Verb1_ProgressiveY_Pluralverb","Btest1111f_Noun0_Singularnoun_Verb2",
+"Btest111c_Btest1111111c_Verb0_ProgressiveN_Singularverb", "Btest111f_Btest11111111f_Noun1_Pluralnoun_Verb2",
+"Btest1111c_Btest11111111c_Verb1_ProgressiveY_Pluralverb","Btest1111111f_Btest1111f_Noun0_Singularnoun_Verb2",
 "Btest11111c_Verb2_ProgressiveN_Pluralverb","Btest11111f_Pluralnoun_Verb2_ProgressiveN",
 "Btest111111c_Verb2_ProgressiveN_Singularverb", "Btest111111f_Singularnoun_Verb2_ProgressiveN",
-"Btest1111111c_Verb0_ProgressiveN_Singularverb", "Btest1111111f__Noun0_Singularnoun_Verb2",
-"Btest11111111c_Verb1_ProgressiveY_Pluralverb","Btest11111111f_Noun1_Pluralnoun_Verb2",
+"Btest1111111c_Btest111c_Verb0_ProgressiveN_Singularverb", "Btest1111111f_Btest1111f_Noun0_Singularnoun_Verb2",
+"Btest11111111c_Btest1111c_Verb1_ProgressiveY_Pluralverb","Btest11111111f_Btest111f_Noun1_Pluralnoun_Verb2",
 "Btest2c_Noun2_Singularnoun", "Btest2f_Singularnoun_Verb2",
 "Btest22c_Noun2_Pluralnoun", "Btest22f_Pluralnoun_Verb2",
 "Btest222c_Noun1_Pluralnoun", "Btest222f_Verb0_ProgressiveN",
 "Btest2222c_Noun0_Singularnoun","Btest2222f_Verb1_ProgressiveY",
 "Btest22222c_Noun1_Pluralnoun", "Btest22222f_Verb1_ProgressiveY",
 "Btest222222c_Noun0_Singularnoun", "Btest222222f_Verb0_ProgressiveN",
-"Btest3c_Verb0", "Btest3f_2ndofVerb1_ProgressiveY",
-"Btest33c_Verb1", "Btest33f_2ndofVerb0_ProgressiveN",
-"Btest333c_Verb0", "Btest333f_2ndofNoun0_Singularnoun",
-"Btest3333c_Verb1", "Btest3333f_2ndofNoun1_Pluralnoun",
-"Btest33333c_Verb0", "Btest33333f_2ndofNoun1_Pluralnoun",
-"Btest333333c_Verb1","Btest333333f_2ndofVerb1_ProgressiveY",
-"Btest3333333c_Verb0", "Btest3333333f_2ndofVerb0_ProgressiveN",
-"Btest33333333c_Verb1","Btest33333333f_2ndofNoun0_Singularnoun",
-"Btest4c_Noun1", "Btest4f_2ndofNoun1_Pluralnoun" ,
-"Btest44c_Noun0","Btest44f_2ndofNoun0_Singularnoun",
-"Btest444c_Noun1", "Btest444f_2ndofVerb1_ProgressiveY",
-"Btest4444c_Noun0","Btest4444f_2ndofVerb0_ProgressiveN" ,
-"Btest44444c_Noun1","Btest44444f_2ndofVerb0_ProgressiveN",
-"Btest444444c_Noun0","Btest444444f_2ndofVerb1_ProgressiveY",
-"Btest4444444c_Noun1" ,"Btest4444444f_2ndofNoun1_Pluralnoun",
-"Btest44444444c_Noun0","Btest44444444f_2ndofNoun0_Singularnoun"
+"Btest3c_Verb0", "Btest3f_Btest333333f_2ndofVerb1_ProgressiveY",
+"Btest33c_Verb1", "Btest33f_Btest3333333f_2ndofVerb0_ProgressiveN",
+"Btest333c_Verb0", "Btest333f_Btest33333333f_2ndofNoun0_Singularnoun",
+"Btest3333c_Verb1", "Btest3333f_Btest33333f_2ndofNoun1_Pluralnoun",
+"Btest33333c_Verb0", "Btest33333f_Btest3333f_2ndofNoun1_Pluralnoun",
+"Btest333333c_Verb1","Btest333333f_Btest3f_2ndofVerb1_ProgressiveY",
+"Btest3333333c_Verb0", "Btest3333333f_Btest33f_2ndofVerb0_ProgressiveN",
+"Btest33333333c_Verb1","Btest33333333f_Btest333f_2ndofNoun0_Singularnoun",
+"Btest4c_Noun1", "Btest4f_Btest4444444f_2ndofNoun1_Pluralnoun" ,
+"Btest44c_Noun0","Btest44f_Btest44444444f_2ndofNoun0_Singularnoun",
+"Btest444c_Noun1", "Btest444f_Btest444444f_2ndofVerb1_ProgressiveY",
+"Btest4444c_Noun0","Btest4444f_Btest44444f_2ndofVerb0_ProgressiveN", 
+"Btest44444c_Noun1","Btest44444f_Btest4444f_2ndofVerb0_ProgressiveN",
+"Btest444444c_Noun0","Btest444444f_Btest444f_2ndofVerb1_ProgressiveY",
+"Btest4444444c_Noun1" ,"Btest4444444f_Btest4f_2ndofNoun1_Pluralnoun",
+"Btest44444444c_Noun0","Btest44444444f_Btest44f_2ndofNoun0_Singularnoun"
 )
+
 
 print(len(Btest))
 print(len(Btestnamelist))
-teststim(Btest, Btestnamelist)
+
+
 
 Ctest.extend((Ctest1c_Verb2_ProgressiveY_Pluralverb,Ctest1f_Pluralnoun_Verb2_ProgressiveY,
 Ctest11c_Verb2_ProgressiveY_Singularverb,Ctest11f_Singularnoun_Verb2_ProgressiveY,
@@ -1480,7 +1506,7 @@ Ctest111c_Verb0_ProgressiveN_Singularverb, Ctest111f_Noun1_Pluralnoun_Verb2,
 Ctest1111c_Verb1_ProgressiveY_Pluralverb,Ctest1111f_Noun0_Singularnoun_Verb2,
 Ctest11111c_Verb2_ProgressiveN_Pluralverb,Ctest11111f_Pluralnoun_Verb2_ProgressiveN,
 Ctest111111c_Verb2_ProgressiveN_Singularverb, Ctest111111f_Singularnoun_Verb2_ProgressiveN,
-Ctest1111111c_Verb0_ProgressiveN_Singularverb, Ctest1111111f__Noun0_Singularnoun_Verb2,
+Ctest1111111c_Verb0_ProgressiveN_Singularverb, Ctest1111111f_Noun0_Singularnoun_Verb2,
 Ctest11111111c_Verb1_ProgressiveY_Pluralverb,Ctest11111111f_Noun1_Pluralnoun_Verb2,
 Ctest2c_Noun2_Singularnoun, Ctest2f_Singularnoun_Verb2,
 Ctest22c_Noun2_Pluralnoun, Ctest22f_Pluralnoun_Verb2,
@@ -1509,39 +1535,39 @@ Ctest44444444c_Noun0,Ctest44444444f_2ndofNoun0_Singularnoun
 
 Ctestnamelist=("Ctest1c_Verb2_ProgressiveY_Pluralverb","Ctest1f_Pluralnoun_Verb2_ProgressiveY",
 "Ctest11c_Verb2_ProgressiveY_Singularverb","Ctest11f_Singularnoun_Verb2_ProgressiveY",
-"Ctest111c_Verb0_ProgressiveN_Singularverb", "Ctest111f_Noun1_Pluralnoun_Verb2",
-"Ctest1111c_Verb1_ProgressiveY_Pluralverb","Ctest1111f_Noun0_Singularnoun_Verb2",
+"Ctest111c_Ctest1111111c_Verb0_ProgressiveN_Singularverb", "Ctest111f_Ctest11111111f_Noun1_Pluralnoun_Verb2",
+"Ctest1111c_Ctest11111111c_Verb1_ProgressiveY_Pluralverb","Ctest1111111f_Ctest1111f_Noun0_Singularnoun_Verb2",
 "Ctest11111c_Verb2_ProgressiveN_Pluralverb","Ctest11111f_Pluralnoun_Verb2_ProgressiveN",
 "Ctest111111c_Verb2_ProgressiveN_Singularverb", "Ctest111111f_Singularnoun_Verb2_ProgressiveN",
-"Ctest1111111c_Verb0_ProgressiveN_Singularverb", "Ctest1111111f__Noun0_Singularnoun_Verb2",
-"Ctest11111111c_Verb1_ProgressiveY_Pluralverb","Ctest11111111f_Noun1_Pluralnoun_Verb2",
+"Ctest1111111c_Ctest111c_Verb0_ProgressiveN_Singularverb", "Ctest1111111f_Ctest1111f_Noun0_Singularnoun_Verb2",
+"Ctest11111111c_Ctest1111c_Verb1_ProgressiveY_Pluralverb","Ctest11111111f_Ctest111f_Noun1_Pluralnoun_Verb2",
 "Ctest2c_Noun2_Singularnoun", "Ctest2f_Singularnoun_Verb2",
 "Ctest22c_Noun2_Pluralnoun", "Ctest22f_Pluralnoun_Verb2",
 "Ctest222c_Noun1_Pluralnoun", "Ctest222f_Verb0_ProgressiveN",
 "Ctest2222c_Noun0_Singularnoun","Ctest2222f_Verb1_ProgressiveY",
 "Ctest22222c_Noun1_Pluralnoun", "Ctest22222f_Verb1_ProgressiveY",
 "Ctest222222c_Noun0_Singularnoun", "Ctest222222f_Verb0_ProgressiveN",
-"Ctest3c_Verb0", "Ctest3f_2ndofVerb1_ProgressiveY",
-"Ctest33c_Verb1", "Ctest33f_2ndofVerb0_ProgressiveN",
-"Ctest333c_Verb0", "Ctest333f_2ndofNoun0_Singularnoun",
-"Ctest3333c_Verb1", "Ctest3333f_2ndofNoun1_Pluralnoun",
-"Ctest33333c_Verb0", "Ctest33333f_2ndofNoun1_Pluralnoun",
-"Ctest333333c_Verb1","Ctest333333f_2ndofVerb1_ProgressiveY",
-"Ctest3333333c_Verb0", "Ctest3333333f_2ndofVerb0_ProgressiveN",
-"Ctest33333333c_Verb1","Ctest33333333f_2ndofNoun0_Singularnoun",
-"Ctest4c_Noun1", "Ctest4f_2ndofNoun1_Pluralnoun" ,
-"Ctest44c_Noun0","Ctest44f_2ndofNoun0_Singularnoun",
-"Ctest444c_Noun1", "Ctest444f_2ndofVerb1_ProgressiveY",
-"Ctest4444c_Noun0","Ctest4444f_2ndofVerb0_ProgressiveN" ,
-"Ctest44444c_Noun1","Ctest44444f_2ndofVerb0_ProgressiveN",
-"Ctest444444c_Noun0","Ctest444444f_2ndofVerb1_ProgressiveY",
-"Ctest4444444c_Noun1" ,"Ctest4444444f_2ndofNoun1_Pluralnoun",
-"Ctest44444444c_Noun0","Ctest44444444f_2ndofNoun0_Singularnoun"
+"Ctest3c_Verb0", "Ctest3f_Ctest333333f_2ndofVerb1_ProgressiveY",
+"Ctest33c_Verb1", "Ctest33f_Ctest3333333f_2ndofVerb0_ProgressiveN",
+"Ctest333c_Verb0", "Ctest333f_Ctest33333333f_2ndofNoun0_Singularnoun",
+"Ctest3333c_Verb1", "Ctest3333f_Ctest33333f_2ndofNoun1_Pluralnoun",
+"Ctest33333c_Verb0", "Ctest33333f_Ctest3333f_2ndofNoun1_Pluralnoun",
+"Ctest333333c_Verb1","Ctest333333f_Ctest3f_2ndofVerb1_ProgressiveY",
+"Ctest3333333c_Verb0", "Ctest3333333f_Ctest33f_2ndofVerb0_ProgressiveN",
+"Ctest33333333c_Verb1","Ctest33333333f_Ctest333f_2ndofNoun0_Singularnoun",
+"Ctest4c_Noun1", "Ctest4f_Ctest4444444f_2ndofNoun1_Pluralnoun" ,
+"Ctest44c_Noun0","Ctest44f_Ctest44444444f_2ndofNoun0_Singularnoun",
+"Ctest444c_Noun1", "Ctest444f_Ctest444444f_2ndofVerb1_ProgressiveY",
+"Ctest4444c_Noun0","Ctest4444f_Ctest44444f_2ndofVerb0_ProgressiveN", 
+"Ctest44444c_Noun1","Ctest44444f_Ctest4444f_2ndofVerb0_ProgressiveN",
+"Ctest444444c_Noun0","Ctest444444f_Ctest444f_2ndofVerb1_ProgressiveY",
+"Ctest4444444c_Noun1" ,"Ctest4444444f_Ctest4f_2ndofNoun1_Pluralnoun",
+"Ctest44444444c_Noun0","Ctest44444444f_Ctest44f_2ndofNoun0_Singularnoun"
 )
+
 
 print(len(Ctest))
 print(len(Ctestnamelist))
-teststim(Ctest, Ctestnamelist)
 
 
 Dtest.extend((Dtest1c_Verb2_ProgressiveY_Pluralverb,Dtest1f_Pluralnoun_Verb2_ProgressiveY,
@@ -1550,7 +1576,7 @@ Dtest111c_Verb0_ProgressiveN_Singularverb, Dtest111f_Noun1_Pluralnoun_Verb2,
 Dtest1111c_Verb1_ProgressiveY_Pluralverb,Dtest1111f_Noun0_Singularnoun_Verb2,
 Dtest11111c_Verb2_ProgressiveN_Pluralverb,Dtest11111f_Pluralnoun_Verb2_ProgressiveN,
 Dtest111111c_Verb2_ProgressiveN_Singularverb, Dtest111111f_Singularnoun_Verb2_ProgressiveN,
-Dtest1111111c_Verb0_ProgressiveN_Singularverb, Dtest1111111f__Noun0_Singularnoun_Verb2,
+Dtest1111111c_Verb0_ProgressiveN_Singularverb, Dtest1111111f_Noun0_Singularnoun_Verb2,
 Dtest11111111c_Verb1_ProgressiveY_Pluralverb,Dtest11111111f_Noun1_Pluralnoun_Verb2,
 Dtest2c_Noun2_Singularnoun, Dtest2f_Singularnoun_Verb2,
 Dtest22c_Noun2_Pluralnoun, Dtest22f_Pluralnoun_Verb2,
@@ -1576,44 +1602,55 @@ Dtest4444444c_Noun1 ,Dtest4444444f_2ndofNoun1_Pluralnoun,
 Dtest44444444c_Noun0,Dtest44444444f_2ndofNoun0_Singularnoun
 ))
 
-
 Dtestnamelist=("Dtest1c_Verb2_ProgressiveY_Pluralverb","Dtest1f_Pluralnoun_Verb2_ProgressiveY",
 "Dtest11c_Verb2_ProgressiveY_Singularverb","Dtest11f_Singularnoun_Verb2_ProgressiveY",
-"Dtest111c_Verb0_ProgressiveN_Singularverb", "Dtest111f_Noun1_Pluralnoun_Verb2",
-"Dtest1111c_Verb1_ProgressiveY_Pluralverb","Dtest1111f_Noun0_Singularnoun_Verb2",
+"Dtest111c_Dtest1111111c_Verb0_ProgressiveN_Singularverb", "Dtest111f_Dtest11111111f_Noun1_Pluralnoun_Verb2",
+"Dtest1111c_Dtest11111111c_Verb1_ProgressiveY_Pluralverb","Dtest1111111f_Dtest1111f_Noun0_Singularnoun_Verb2",
 "Dtest11111c_Verb2_ProgressiveN_Pluralverb","Dtest11111f_Pluralnoun_Verb2_ProgressiveN",
 "Dtest111111c_Verb2_ProgressiveN_Singularverb", "Dtest111111f_Singularnoun_Verb2_ProgressiveN",
-"Dtest1111111c_Verb0_ProgressiveN_Singularverb", "Dtest1111111f__Noun0_Singularnoun_Verb2",
-"Dtest11111111c_Verb1_ProgressiveY_Pluralverb","Dtest11111111f_Noun1_Pluralnoun_Verb2",
+"Dtest1111111c_Dtest111c_Verb0_ProgressiveN_Singularverb", "Dtest1111111f_Dtest1111f_Noun0_Singularnoun_Verb2",
+"Dtest11111111c_Dtest1111c_Verb1_ProgressiveY_Pluralverb","Dtest11111111f_Dtest111f_Noun1_Pluralnoun_Verb2",
 "Dtest2c_Noun2_Singularnoun", "Dtest2f_Singularnoun_Verb2",
 "Dtest22c_Noun2_Pluralnoun", "Dtest22f_Pluralnoun_Verb2",
 "Dtest222c_Noun1_Pluralnoun", "Dtest222f_Verb0_ProgressiveN",
 "Dtest2222c_Noun0_Singularnoun","Dtest2222f_Verb1_ProgressiveY",
 "Dtest22222c_Noun1_Pluralnoun", "Dtest22222f_Verb1_ProgressiveY",
 "Dtest222222c_Noun0_Singularnoun", "Dtest222222f_Verb0_ProgressiveN",
-"Dtest3c_Verb0", "Dtest3f_2ndofVerb1_ProgressiveY",
-"Dtest33c_Verb1", "Dtest33f_2ndofVerb0_ProgressiveN",
-"Dtest333c_Verb0", "Dtest333f_2ndofNoun0_Singularnoun",
-"Dtest3333c_Verb1", "Dtest3333f_2ndofNoun1_Pluralnoun",
-"Dtest33333c_Verb0", "Dtest33333f_2ndofNoun1_Pluralnoun",
-"Dtest333333c_Verb1","Dtest333333f_2ndofVerb1_ProgressiveY",
-"Dtest3333333c_Verb0", "Dtest3333333f_2ndofVerb0_ProgressiveN",
-"Dtest33333333c_Verb1","Dtest33333333f_2ndofNoun0_Singularnoun",
-"Dtest4c_Noun1", "Dtest4f_2ndofNoun1_Pluralnoun" ,
-"Dtest44c_Noun0","Dtest44f_2ndofNoun0_Singularnoun",
-"Dtest444c_Noun1", "Dtest444f_2ndofVerb1_ProgressiveY",
-"Dtest4444c_Noun0","Dtest4444f_2ndofVerb0_ProgressiveN" ,
-"Dtest44444c_Noun1","Dtest44444f_2ndofVerb0_ProgressiveN",
-"Dtest444444c_Noun0","Dtest444444f_2ndofVerb1_ProgressiveY",
-"Dtest4444444c_Noun1" ,"Dtest4444444f_2ndofNoun1_Pluralnoun",
-"Dtest44444444c_Noun0","Dtest44444444f_2ndofNoun0_Singularnoun"
+"Dtest3c_Verb0", "Dtest3f_Dtest333333f_2ndofVerb1_ProgressiveY",
+"Dtest33c_Verb1", "Dtest33f_Dtest3333333f_2ndofVerb0_ProgressiveN",
+"Dtest333c_Verb0", "Dtest333f_Dtest33333333f_2ndofNoun0_Singularnoun",
+"Dtest3333c_Verb1", "Dtest3333f_Dtest33333f_2ndofNoun1_Pluralnoun",
+"Dtest33333c_Verb0", "Dtest33333f_Dtest3333f_2ndofNoun1_Pluralnoun",
+"Dtest333333c_Verb1","Dtest333333f_Dtest3f_2ndofVerb1_ProgressiveY",
+"Dtest3333333c_Verb0", "Dtest3333333f_Dtest33f_2ndofVerb0_ProgressiveN",
+"Dtest33333333c_Verb1","Dtest33333333f_Dtest333f_2ndofNoun0_Singularnoun",
+"Dtest4c_Noun1", "Dtest4f_Dtest4444444f_2ndofNoun1_Pluralnoun" ,
+"Dtest44c_Noun0","Dtest44f_Dtest44444444f_2ndofNoun0_Singularnoun",
+"Dtest444c_Noun1", "Dtest444f_Dtest444444f_2ndofVerb1_ProgressiveY",
+"Dtest4444c_Noun0","Dtest4444f_Dtest44444f_2ndofVerb0_ProgressiveN", 
+"Dtest44444c_Noun1","Dtest44444f_Dtest4444f_2ndofVerb0_ProgressiveN",
+"Dtest444444c_Noun0","Dtest444444f_Dtest444f_2ndofVerb1_ProgressiveY",
+"Dtest4444444c_Noun1" ,"Dtest4444444f_Dtest4f_2ndofNoun1_Pluralnoun",
+"Dtest44444444c_Noun0","Dtest44444444f_Dtest44f_2ndofNoun0_Singularnoun"
 )
+
 
 print(len(Dtest))
 print(len(Dtestnamelist))
-teststim(Dtest, Dtestnamelist)
 
 
+#trainstim(ASentence, Atrainnamelist, "A")
+#trainstim(BSentence, Btrainnamelist, "B")
+#trainstim(CSentence, Ctrainnamelist, "C")
+trainstim(DSentence, Dtrainnamelist, "D")
+
+#teststim(Atest, Atestnamelist, "A")
+#teststim(Btest, Btestnamelist, "B")
+#teststim(Ctest, Ctestnamelist, "C")
+#teststim(Dtest, Dtestnamelist, "D")
+
+#for element in Btest:
+#	testoutput.write(element + str("\n"))
 
 
 ##########################
