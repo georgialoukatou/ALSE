@@ -9,57 +9,124 @@ import pyglet
 uniqueid=sys.argv[1] #subject initials 
 group=sys.argv[2] #indicate which of the four groups the subject will be tested on
 
+#uniqueid="test" #subject initials 
+#group="A" #indicate which of the four groups the subject will be tested on
+
 
 ################### Registering files
-datafile = open("/Users/admin/Documents/datafiles/" + str(uniqueid)   + "_data.csv", 'a')
+datafile = open("/Users/admin/Documents/datafiles/pilot2/" + str(uniqueid)   + "_data.csv", 'a')
 datafile = csv.writer(datafile, delimiter=",")
 register=str("uniqueid, group, numberoftrial, datetime, thisResp, stim1, stim2, 1.clock2 before presenttest function, 2.clock0 before playing 1, 3.clock0 after playing 1, 4.clock0 before playing 2, 5.clock0 after playing 2, 6.clock2 before trackanswer function, thisKey, 7.clock1 pressing key, 8.clock2 after trackanswer function").split(",")
 datafile.writerow(register)
 
-logfile = open("/Users/admin/Documents/datafiles/" + str(uniqueid)   + "_log.csv", 'a')
+logfile = open("/Users/admin/Documents/datafiles/pilot2/" + str(uniqueid)   + "_log.csv", 'a')
 orig_stdout = sys.stdout
 sys.stdout = logfile
 
 
 #################  paths
-path_train_video="/Users/admin/Documents/datafiles/final/trainvideos/"+ str(group)+ "/" 
-
-path_test_audio="/Users/admin/Documents/datafiles/final/testsounds/"+ str(group)+ "/"
+path_train_video="/Users/admin/Documents/datafiles/final1/trainvideostest/"+ str(group)+ "/" 
+path_test_audio="/Users/admin/Documents/datafiles/final1/testsounds/"+ str(group)+ "/"
 
 
 test_1=[path_test_audio + str(group) + 'test1c_Verb2_ProgressiveY_Pluralverb_sil.aiff', path_test_audio +  str(group) + 'test1f_Pluralnoun_Verb2_ProgressiveY_sil.aiff' ]
 test_2=[path_test_audio + str(group) + 'test2f_Singularnoun_Verb2_sil.aiff', path_test_audio +  str(group) + 'test2c_Noun2_Singularnoun_sil.aiff' ]
-test_3=[path_test_audio + str(group) + 'test3c_Verb0_sil.aiff', path_test_audio +  str(group) + 'test3f_2ndofVerb1_ProgressiveY_sil.aiff' ]
-test_4=[path_test_audio + str(group) + 'test4c_Noun1_sil.aiff', path_test_audio + str(group) + 'test4f_2ndofNoun1_Pluralnoun_sil.aiff' ]
+test_3=[path_test_audio + str(group) + 'test3c_Verb0_sil.aiff', path_test_audio +  str(group) + 'test3f_'+  str(group) +'test333333f_'+  str(group) +'test444f_' +  str(group) +'test444444f_' +'2ndofVerb1_ProgressiveY_sil.aiff' ]
+test_4=[path_test_audio + str(group) + 'test4c_Noun1_sil.aiff', path_test_audio + str(group) + 'test4f_'+  str(group) +'test4444444f_'+  str(group) +'test3333f_'+  str(group) +'test33333f_2ndofNoun1_Pluralnoun_sil.aiff' ]
 test_11=[path_test_audio + str(group) +  'test11c_Verb2_ProgressiveY_Singularverb_sil.aiff', path_test_audio + str(group) + 'test11f_Singularnoun_Verb2_ProgressiveY_sil.aiff']
 test_22=[path_test_audio + str(group) + 'test22f_Pluralnoun_Verb2_sil.aiff', path_test_audio + str(group) + 'test22c_Noun2_Pluralnoun_sil.aiff' ]
-test_33=[path_test_audio + str(group) + 'test33f_2ndofVerb0_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test33c_Verb1_sil.aiff' ]
-test_44=[path_test_audio + str(group) + 'test44c_Noun0_sil.aiff', path_test_audio + str(group) + 'test44f_2ndofNoun0_Singularnoun_sil.aiff' ]
-test_111=[path_test_audio + str(group) + 'test111f_Noun1_Pluralnoun_Verb2_sil.aiff', path_test_audio + str(group) + 'test111c_Verb0_ProgressiveN_Singularverb_sil.aiff' ]
+test_33=[path_test_audio + str(group) + 'test33f_'+  str(group) +'test3333333f_'+  str(group) +'test4444f_'+  str(group) +'test44444f_' + '2ndofVerb0_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test33c_Verb1_sil.aiff' ]
+test_44=[path_test_audio + str(group) + 'test44c_Noun0_sil.aiff', path_test_audio + str(group) + 'test44f_'+ str(group) +'test44444444f_'+ str(group) +'test333f_'+ str(group) +'test33333333f_2ndofNoun0_Singularnoun_sil.aiff' ]
+test_111=[path_test_audio + str(group) + 'test111f_'+  str(group) +'test11111111f_Noun1_Pluralnoun_Verb2_sil.aiff', path_test_audio + str(group) + 'test111c_'+  str(group) +'test1111111c_Verb0_ProgressiveN_Singularverb_sil.aiff' ]
 test_222=[path_test_audio + str(group) + 'test222c_Noun1_Pluralnoun_sil.aiff', path_test_audio + str(group) + 'test222f_Verb0_ProgressiveN_sil.aiff' ]
-test_333=[path_test_audio + str(group) + 'test333c_Verb0_sil.aiff', path_test_audio + str(group) + 'test333f_2ndofNoun0_Singularnoun_sil.aiff' ]
-test_444=[path_test_audio + str(group) + 'test444f_2ndofVerb1_ProgressiveY_sil.aiff', path_test_audio + str(group) + 'test444c_Noun1_sil.aiff' ]
-test_1111=[path_test_audio + str(group) + 'test1111c_Verb1_ProgressiveY_Pluralverb_sil.aiff', path_test_audio + str(group) + 'test1111f_Noun0_Singularnoun_Verb2_sil.aiff' ]
+test_333=[path_test_audio + str(group) + 'test333c_Verb0_sil.aiff', path_test_audio + str(group) + 'test333f_'+  str(group) +'test33333333f_'+  str(group) +'test44f_'+  str(group) +'test44444444f_2ndofNoun0_Singularnoun_sil.aiff' ]
+test_444=[path_test_audio + str(group) + 'test444f_'+  str(group) +'test444444f_'+  str(group) +'test3f_'+  str(group) +'test333333f_2ndofVerb1_ProgressiveY_sil.aiff', path_test_audio + str(group) + 'test444c_Noun1_sil.aiff' ]
+test_1111=[path_test_audio + str(group) + 'test1111c_'+  str(group) +'test11111111c_Verb1_ProgressiveY_Pluralverb_sil.aiff', path_test_audio + str(group) + 'test1111f_'+  str(group) + 'test1111111f_Noun0_Singularnoun_Verb2_sil.aiff' ]
 test_2222=[path_test_audio + str(group) + 'test2222c_Noun0_Singularnoun_sil.aiff', path_test_audio + str(group) + 'test2222f_Verb1_ProgressiveY_sil.aiff' ]
-test_3333=[path_test_audio + str(group) + 'test3333c_Verb1_sil.aiff', path_test_audio + str(group) + 'test3333f_2ndofNoun1_Pluralnoun_sil.aiff' ]
-test_4444=[path_test_audio + str(group) + 'test4444f_2ndofVerb0_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test4444c_Noun0_sil.aiff' ]
+test_3333=[path_test_audio + str(group) + 'test3333c_Verb1_sil.aiff', path_test_audio + str(group) + 'test3333f_'+ str(group) + 'test33333f_'+ str(group) + 'test4f_'+  str(group) +'test4444444f_2ndofNoun1_Pluralnoun_sil.aiff' ]
+test_4444=[path_test_audio + str(group) + 'test4444f_'+  str(group) +'test44444f_'+  str(group) +'test33f_'+  str(group) +'test3333333f_'+'2ndofVerb0_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test4444c_Noun0_sil.aiff' ]
 test_11111=[path_test_audio + str(group) + 'test11111f_Pluralnoun_Verb2_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test11111c_Verb2_ProgressiveN_Pluralverb_sil.aiff' ]
 test_22222=[path_test_audio + str(group) + 'test22222f_Verb1_ProgressiveY_sil.aiff', path_test_audio + str(group) + 'test22222c_Noun1_Pluralnoun_sil.aiff' ]
-test_33333=[path_test_audio + str(group) + 'test33333c_Verb0_sil.aiff', path_test_audio + str(group) + 'test33333f_2ndofNoun1_Pluralnoun_sil.aiff' ]
-test_44444=[path_test_audio + str(group) + 'test44444f_2ndofVerb0_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test44444c_Noun1_sil.aiff' ]
+test_33333=[path_test_audio + str(group) + 'test33333c_Verb0_sil.aiff', path_test_audio + str(group) + 'test33333f_'+ str(group) + 'test3333f_'+str(group) + 'test4f_'+ str(group) +'test4444444f_2ndofNoun1_Pluralnoun_sil.aiff' ]
+test_44444=[path_test_audio + str(group) + 'test44444f_'+  str(group) +'test4444f_'+  str(group) +'test33f_'+  str(group) +'test3333333f_2ndofVerb0_ProgressiveN_sil.aiff', path_test_audio + str(group) + 'test44444c_Noun1_sil.aiff' ]
 test_111111=[path_test_audio + str(group) + 'test111111c_Verb2_ProgressiveN_Singularverb_sil.aiff', path_test_audio  + str(group) + 'test111111f_Singularnoun_Verb2_ProgressiveN_sil.aiff' ]
-test_333333=[path_test_audio + str(group) + 'test333333f_2ndofVerb1_ProgressiveY_sil.aiff', path_test_audio + str(group) + 'test333333c_Verb1_sil.aiff']
+test_333333=[path_test_audio + str(group) + 'test333333f_'+  str(group) +'test3f_'+  str(group) +'test444f_'+  str(group) +'test444444f_2ndofVerb1_ProgressiveY_sil.aiff', path_test_audio + str(group) + 'test333333c_Verb1_sil.aiff']
 test_222222=[path_test_audio + str(group) + 'test222222f_Verb0_ProgressiveN_sil.aiff',  path_test_audio + str(group) + 'test222222c_Noun0_Singularnoun_sil.aiff']
-test_444444=[path_test_audio + str(group) + 'test444444c_Noun0_sil.aiff', path_test_audio + str(group) + 'test444444f_2ndofVerb1_ProgressiveY_sil.aiff']
-test_1111111=[path_test_audio + str(group) + 'test1111111c_Verb0_ProgressiveN_Singularverb_sil.aiff', path_test_audio + str(group) + 'test1111111f_Noun0_Singularnoun_Verb2_sil.aiff']
-test_3333333=[path_test_audio + str(group) + 'test3333333c_Verb0_sil.aiff', path_test_audio + str(group) + 'test3333333f_2ndofVerb0_ProgressiveN_sil.aiff']
-test_4444444=[path_test_audio + str(group) + 'test4444444f_2ndofNoun1_Pluralnoun_sil.aiff', path_test_audio + str(group) + 'test4444444c_Noun1_sil.aiff']
-test_33333333=[path_test_audio + str(group) + 'test33333333f_2ndofNoun0_Singularnoun_sil.aiff', path_test_audio + str(group) + 'test33333333c_Verb1_sil.aiff']
-test_11111111=[path_test_audio + str(group) + 'test11111111c_Verb1_ProgressiveY_Pluralverb_sil.aiff', path_test_audio + str(group) + 'test11111111f_Noun1_Pluralnoun_Verb2_sil.aiff']
-test_44444444=[path_test_audio + str(group) + 'test44444444f_2ndofNoun0_Singularnoun_sil.aiff', path_test_audio + str(group) + 'test44444444c_Noun0_sil.aiff']
+test_444444=[path_test_audio + str(group) + 'test444444c_Noun0_sil.aiff', path_test_audio + str(group) + 'test444444f_'+  str(group) +'test444f_'+  str(group) +'test333333f_'+  str(group) +'test3f_2ndofVerb1_ProgressiveY_sil.aiff']
+test_1111111=[path_test_audio + str(group) + 'test1111111c_'+  str(group) +'test111c_Verb0_ProgressiveN_Singularverb_sil.aiff', path_test_audio + str(group) + 'test1111111f_'+  str(group) +'test1111f_Noun0_Singularnoun_Verb2_sil.aiff']
+test_3333333=[path_test_audio + str(group) + 'test3333333c_Verb0_sil.aiff', path_test_audio + str(group) + 'test3333333f_'+  str(group) +'test33f_'+  str(group) +'test44444f_'+  str(group) +'test4444f_2ndofVerb0_ProgressiveN_sil.aiff']
+test_4444444=[path_test_audio + str(group) + 'test4444444f_'+  str(group) +'test4f_'+  str(group) +'test3333f_'+  str(group) +'test33333f_2ndofNoun1_Pluralnoun_sil.aiff', path_test_audio + str(group) + 'test4444444c_Noun1_sil.aiff']
+test_33333333=[path_test_audio + str(group) + 'test33333333f_'+  str(group) +'test333f_'+  str(group) +'test44f_'+  str(group) +'test44444444f_2ndofNoun0_Singularnoun_sil.aiff', path_test_audio + str(group) + 'test33333333c_Verb1_sil.aiff']
+test_11111111=[path_test_audio + str(group) + 'test11111111c_'+  str(group) +'test1111c_Verb1_ProgressiveY_Pluralverb_sil.aiff', path_test_audio + str(group) + 'test11111111f_'+  str(group) +'test111f_Noun1_Pluralnoun_Verb2_sil.aiff']
+test_44444444=[path_test_audio + str(group) + 'test44444444f_'+  str(group) +'test44f_'+  str(group) +'test33333333f_'+  str(group) +'test333f_2ndofNoun0_Singularnoun_sil.aiff', path_test_audio + str(group) + 'test44444444c_Noun0_sil.aiff']
 
 
-alltesttrials=[test_1, test_2, test_3, test_4, test_11, test_22, test_33, test_44, test_111, test_222, test_333, test_444, test_1111, test_2222, test_3333, test_4444, test_11111, test_22222, test_33333, test_44444,  test_111111, test_333333, test_222222, test_444444, test_1111111, test_3333333, test_4444444, test_33333333, test_11111111, test_44444444]
+alltesttrials=[test_1,   test_2,  test_3, test_4, test_11, test_22, test_33, test_44, test_111, test_222, test_333, test_444, test_1111, test_2222, test_3333, test_4444, test_11111, test_22222, test_33333, test_44444,  test_111111, test_333333, test_222222, test_444444, 
+test_1111111,test_3333333, test_4444444,test_33333333,test_11111111,test_44444444]
+random.shuffle(alltesttrials)
+for trial in alltesttrials:
+	random.shuffle(trial)
+
+removeitems=["sil.aiff", "ProgressiveN", "ProgressiveY", "Pluralnoun", "Pluralverb", "Singularnoun", "Singularverb", "2ndofNoun0", "2ndofNoun1", "2ndofVerb0", "2ndofVerb1"]
+
+def pseudorepet(alltesttrials):
+  for i, el in enumerate(alltesttrials):
+	repet1=str(el[0]).split("_")
+	repet2=str(el[1]).split("_")
+	join=repet1 + repet2
+	join=set(join)	
+	for item in removeitems:
+			if item in join: join.remove(item)
+	if i<len(alltesttrials)-2:
+	 y=0
+	 while True:
+	  if y !=len(alltesttrials)-(i-1):
+	 	next_=alltesttrials[i+1]
+	 	next__=alltesttrials[i+2]
+		repet1b=str(next_[0]).split("_")
+		repet2b=str(next_[1]).split("_")
+		joinb=repet1b + repet2b
+		joinb=set(joinb)
+		for item in removeitems:
+			if item in joinb: joinb.remove(item)
+		repet1c=str(next__[0]).split("_")
+		repet2c=str(next__[1]).split("_")
+		joinc=repet1c + repet2c
+		joinc=set(joinc)
+		for item in removeitems:
+			if item in joinc: joinc.remove(item)
+		joinbc=joinb.union(joinc)
+		out = any(check in join for check in joinbc) 
+		if out == True:
+		  print(el, next_)
+		  alltesttrials.insert(len(alltesttrials), alltesttrials.pop(i+1))
+		  y=y+1
+		  continue
+		else:
+		 break
+	  else:
+	  	break
+	 else:
+		break	
+  return(alltesttrials)
+
+pseudorepet(alltesttrials)
+alltesttrials.reverse()
+pseudorepet(alltesttrials)
+
+
+
+
+#	if i<20:
+#		if any (ext in str(el[i+1]) for ext in join):
+#			alltesttrials.insert(i+2, alltesttrials.pop(i+1))
+
+print("final")
+for elem in alltesttrials:
+	print(elem)
+
+
+
 
 
 ######### Window and time 
@@ -138,6 +205,7 @@ showinstructions(text3, 0.5)
  
 ########TRAINING
 
+
 text4ta=u"Félicitations! Vous venez de terminer un quart de votre formation."
 text4tb=u"Félicitations! Vous venez de terminer la moitié de votre formation."
 text4tc=u"Félicitations! Vous venez de terminer les trois quarts de votre formation. Attention, il y aura bientôt un test sur vos connaissances de la langue."
@@ -164,7 +232,7 @@ for i, video in enumerate(video_list):
     fixation.draw()
     win.update()
     core.wait(0.5)
-    mov = visual.MovieStim3(win, video,flipVert=False, flipHoriz=False)
+    mov = visual.MovieStim3(win, video,  size=(1010, 605), flipVert=False, flipHoriz=False)
     while mov.status != visual.FINISHED:
         mov.draw()
         win.flip()
