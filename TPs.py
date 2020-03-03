@@ -220,6 +220,31 @@ FAtest444c=0
 FAtest444f=0
 FAtest4444c=0
 FAtest4444f=0
+FAtest22222c=0
+FAtest22222f=0
+FAtest222222c=0
+FAtest222222f=0
+FAtest1111111c=0
+FAtest1111111f=0
+FAtest11111111c=0
+FAtest11111111f=0
+FAtest33333c=0
+FAtest33333f=0
+FAtest333333c=0
+FAtest333333f=0
+FAtest3333333c=0
+FAtest3333333f=0
+FAtest33333333c=0
+FAtest33333333f=0
+FAtest44444c=0
+FAtest44444f=0
+FAtest444444c=0
+FAtest444444f=0
+FAtest4444444c=0
+FAtest4444444f=0
+FAtest44444444c=0
+FAtest44444444f=0
+
 
 
 #verb vs non-verb
@@ -281,11 +306,11 @@ Atest4444f_2ndofVerb0_ProgressiveN = AVerb[0][2:5] + AProgressiveN
 
 for item in ASentence:
  if AVerb[2] in item: 
- 	fverb2=fverb2+1
+    fverb2=fverb2+1
  if AVerb[2] + AProgressiveY in item:
-	fverb2progry=fverb2progry+1
+    fverb2progry=fverb2progry + 1
  if AVerb[2] + AProgressiveN in item:
-	fverb2progrn=fverb2progrn+1
+    fverb2progrn=fverb2progrn + 1
  if AVerb[2] + AProgressiveY + APluralVerb in item:
  	FAtest1c=FAtest1c + 1
  if AVerb[2] + AProgressiveY + ASingularVerb in item:
@@ -296,26 +321,34 @@ for item in ASentence:
  	FAtest111111c=FAtest111111c + 1  
 
  if AVerb[0][0:2] in item:
- 	ffirstsyllverb0=ffirstsyllverb0+1
+ 	ffirstsyllverb0=ffirstsyllverb0 + 1
  if AVerb[0][2:5] in item:
- 	fsecondsyllverb0=fsecondsyllverb0+1
+ 	fsecondsyllverb0=fsecondsyllverb0 + 1
  if AVerb[0] in item:
  	fverb0=fverb0 +1
  	FAtest3c=FAtest3c + 1 
  	FAtest333c=FAtest333c + 1 
+ 	FAtest33333c=FAtest33333c +1
+ 	FAtest3333333c=FAtest3333333c+1
  if AVerb[0][2:5] + AProgressiveN in item:
  	fsecondsyllverb0progrn=fsecondsyllverb0progrn +1
  	FAtest33f=FAtest33f+1
  	FAtest4444f=FAtest4444f + 1
+ 	FAtest3333333f=FAtest3333333f+1
+ 	FAtest44444f=FAtest44444f+1
  if AVerb[0] + AProgressiveN + ASingularVerb  in item:
  	FAtest111c= FAtest111c + 1
+ 	FAtest1111111c= FAtest1111111c + 1
  if AVerb[0] + AProgressiveN in item:
  	FAtest222f= FAtest222f + 1 
+ 	FAtest222222f=FAtest222222f +1
  
  if AVerb[1] in item:
  	fverb1=fverb1+1	
  	FAtest33c=FAtest33c + 1 
  	FAtest3333c=FAtest3333c + 1 
+ 	FAtest333333c=FAtest333333c+1
+ 	FAtest33333333c=FAtest33333333c +1
  if AVerb[1][0:3] in item:
  	ffirstsyllverb1=ffirstsyllverb1+1
  if AVerb[1][3:6] in item:
@@ -323,29 +356,38 @@ for item in ASentence:
  if AVerb[1][3:6] + AProgressiveY in item:
  	fsecondsyllverb1progry=fsecondsyllverb1progry+1
  	FAtest444f=FAtest444f + 1
+ 	FAtest444444f=FAtest444444f+1
  	FAtest3f=FAtest3f+1
+ 	FAtest333333f=FAtest333333f+1
  if AVerb[1] + AProgressiveY + APluralVerb  in item:
  	FAtest1111c=FAtest1111c +1 	
+ 	FAtest11111111c=FAtest11111111c +1 	
  if AVerb[1] + AProgressiveY in item:
  	FAtest2222f= FAtest2222f + 1 
+ 	FAtest22222f=FAtest22222f + 1
 
  if ANoun[0] in item:
  	fnoun0=fnoun0+1	
  	FAtest44c=FAtest44c + 1
  	FAtest4444c=FAtest4444c + 1
+ 	FAtest444444c=FAtest444444c+1
+ 	FAtest44444444c=FAtest44444444c+1
  if  ANoun[0][0:3] in item:
  	ffirstsyllnoun0=ffirstsyllnoun0+1 	
  if ANoun[0][3:6] + ASingularNoun in item:
  	fsecondsyllnoun0singularn=fsecondsyllnoun0singularn+1
  	FAtest333f=FAtest333f+1
  	FAtest4f=FAtest4f + 1  
+ 	FAtest33333333f=FAtest33333333f+1
+ 	FAtest44444444f=FAtest44444444f+1
  if ANoun[0][3:6] in item:
  	fsecondsyllnoun0=fsecondsyllnoun0+1	 
  if ANoun[0] + ASingularNoun +  " - " + AVerb[2]  in item:
  	FAtest1111f=FAtest1111f + 1  	
+ 	FAtest1111111f=FAtest1111111f+1
  if ANoun[0] + ASingularNoun in item:
  	FAtest2222c=FAtest2222c +1 
- 	
+ 	FAtest222222c=FAtest222222c +1
  
  if ANoun[1][0:2] in item:
  	ffirstsyllnoun1=ffirstsyllnoun1+1
@@ -354,17 +396,22 @@ for item in ASentence:
  if ANoun[1][2:5] + APluralNoun in item:
  	fsecondsyllnoun1pluraln = fsecondsyllnoun1pluraln + 1
  	FAtest44f=FAtest44f + 1
+ 	FAtest4444444f=FAtest4444444f+1
  	FAtest3333f=FAtest3333f+1
+ 	FAtest33333f=FAtest33333f +1
  if ANoun[1] + APluralNoun in item:
  	fnoun1pluraln= fnoun1pluraln + 1  	
  	FAtest222c=FAtest222c + 1
+ 	FAtest22222c=FAtest22222c +1
  if ANoun[1] in item:
  	fnoun1=fnoun1+1
  	FAtest4c=FAtest4c + 1
  	FAtest444c=FAtest444c + 1
+ 	FAtest44444c=FAtest44444c+1
+ 	FAtest4444444c=FAtest4444444c+1
  if ANoun[1] + APluralNoun + " - " + AVerb[2] in item:
- 	FAtest111f=FAtest111f +1 
-
+    FAtest111f=FAtest111f +1 
+    FAtest11111111f=FAtest11111111f + 1 
  if ANoun[2] + ASingularNoun in item:
  	fnoun2singularn= fnoun2singularn + 1 
  	FAtest2c=FAtest2c +1 
@@ -392,8 +439,8 @@ for item in ASentence:
 	
  	
  if APluralNoun + " - "+ AVerb[2] in item:
-	fpluralnverb2=fpluralnverb2+1
-	FAtest2f=FAtest2f +1  
+    fpluralnverb2=fpluralnverb2+1
+    FAtest2f=FAtest2f +1  
  if APluralNoun in item:
  	fpluraln=fpluraln + 1
  if APluralNoun + " - " +  AVerb[2] + AProgressiveN in item:
@@ -401,8 +448,8 @@ for item in ASentence:
  if ASingularNoun in item:
  	fsingularn=fsingularn + 1
  if ASingularNoun + " - "+ AVerb[2] in item:
-	fsingularnverb2=fsingularnverb2+1
-	FAtest22f=FAtest22f + 1
+    fsingularnverb2=fsingularnverb2+1
+    FAtest22f=FAtest22f + 1
  if APluralNoun + " - " + AVerb[2] + AProgressiveY in item:
  	FAtest1f=FAtest1f + 1
  if ASingularNoun + " - " +  AVerb[2] + AProgressiveY in item:
@@ -440,6 +487,11 @@ TPAtest11111c=(fverb2progrn/fverb2) + (fprogrnpluralv/fprogrn)
 TPAtest11111f= (fpluralnverb2/fpluraln) + (fverb2progrn/fverb2)
 TPAtest111111c= (fverb2progrn/fverb2) + (fprogrnsingularv/fprogrn)
 TPAtest111111f= (fsingularnverb2/fsingularn) + (fverb2progrn/fverb2)
+TPAtest1111111c= (fverb0/ffirstsyllverb0) +  (fsecondsyllverb0progrn/fsecondsyllverb0) + (fprogrnsingularv/fprogrn)
+TPAtest1111111f= (fnoun0/ffirstsyllnoun0) + (fsecondsyllnoun0singularn/fsecondsyllnoun0) + (fsingularnverb2/fverb2)
+TPAtest11111111c= (fverb1/ffirstsyllverb1) +  (fsecondsyllverb1progry/fsecondsyllverb1) + (fprogrypluralv/fprogry)
+TPAtest11111111f= (fnoun1/ffirstsyllnoun1) + (fsecondsyllnoun1pluraln/fsecondsyllnoun1) + (fpluralnverb2/fpluraln)
+
 
 TPAtest2c= (fnoun2singularn/fnoun2)
 TPAtest2f= (fpluralnverb2/fpluraln)
@@ -449,7 +501,10 @@ TPAtest222c=(fnoun1/ffirstsyllnoun1) + (fsecondsyllnoun1pluraln/fsecondsyllnoun1
 TPAtest222f= (fverb0/ffirstsyllverb0) + (fsecondsyllverb0progrn/fsecondsyllverb0) #idem
 TPAtest2222c=(fnoun0/ffirstsyllnoun0) + (fsecondsyllnoun0singularn/fsecondsyllnoun0)  #idem
 TPAtest2222f= (fverb1/ffirstsyllverb1) + (fsecondsyllverb1progry/fsecondsyllverb1) # idem
-
+TPAtest22222c=(fnoun1/ffirstsyllnoun1) +  (fsecondsyllnoun1pluraln/fsecondsyllnoun1) 
+TPAtest22222f=(fverb1/ffirstsyllverb1) + (fsecondsyllverb1progry/fsecondsyllverb1)
+TPAtest222222c=(fnoun0/ffirstsyllnoun0) + (fsecondsyllnoun0singularn/fsecondsyllnoun0)
+TPAtest222222f=(fverb0/ffirstsyllverb0) + (fsecondsyllverb0progrn/fsecondsyllverb0)
 
 
 TPAtest3c=(fverb0/ffirstsyllverb0)
@@ -460,6 +515,14 @@ TPAtest333c=(fverb0/ffirstsyllverb0)
 TPAtest333f=(fsecondsyllnoun0singularn/fsecondsyllnoun0)
 TPAtest3333c=(fverb1/ffirstsyllverb1)
 TPAtest3333f=(fsecondsyllnoun1pluraln/fsecondsyllnoun1) 
+TPAtest33333c=(fverb0/ffirstsyllverb0)
+TPAtest33333f=(fsecondsyllnoun1pluraln/fsecondsyllnoun1) 
+TPAtest333333c=(fverb1/ffirstsyllverb1)
+TPAtest333333f=(fsecondsyllverb1progry/fsecondsyllverb1)
+TPAtest3333333c=(fverb0/ffirstsyllverb0)
+TPAtest3333333f=(fsecondsyllverb0progrn/fsecondsyllverb0)
+TPAtest33333333c=(fverb1/ffirstsyllverb1)
+TPAtest33333333f=(fsecondsyllnoun0singularn/fsecondsyllnoun0)
 
 
 TPAtest4c=(fnoun1/ffirstsyllnoun1)
@@ -470,7 +533,14 @@ TPAtest444c= (fnoun1/ffirstsyllnoun1)
 TPAtest444f= (fsecondsyllverb1progry/fsecondsyllverb1)
 TPAtest4444c= (fnoun0/ffirstsyllnoun0)
 TPAtest4444f=(fsecondsyllverb0progrn/fsecondsyllverb0)
-
+TPAtest44444c= (fnoun1/ffirstsyllnoun1)
+TPAtest44444f= (fsecondsyllverb0progrn/fsecondsyllverb0)
+TPAtest444444c= (fnoun0/ffirstsyllnoun0)
+TPAtest444444f= (fsecondsyllverb1progry/fsecondsyllverb1)
+TPAtest4444444c=(fnoun1/ffirstsyllnoun1)
+TPAtest4444444f=(fsecondsyllnoun1pluraln/fsecondsyllnoun1)
+TPAtest44444444c=(fnoun0/ffirstsyllnoun0)
+TPAtest44444444f=(fsecondsyllnoun0singularn/fsecondsyllnoun0)
 
 
 print("test1",TPAtest1c,FAtest1c,  "+", TPAtest1f,FAtest1f)
@@ -479,19 +549,34 @@ print("test111",TPAtest111c,FAtest111c,TPAtest111f,FAtest111f)
 print("test1111",TPAtest1111c,FAtest1111c,TPAtest1111f,FAtest1111f)
 print("test11111",TPAtest11111c,FAtest11111c,TPAtest11111f,FAtest11111f)
 print("test111111",TPAtest111111c,FAtest111111c,TPAtest111111f,FAtest111111f)
+print("test1111111",TPAtest1111111c,FAtest1111111c,TPAtest1111111f,FAtest1111111f)
+print("test11111111",TPAtest11111111c,FAtest11111111c,TPAtest11111111f,FAtest11111111f)
+
 
 print("test2", TPAtest2c, FAtest2c,TPAtest2f, FAtest2f)
 print("test22", TPAtest22c, FAtest22c,TPAtest22f, FAtest22f)
 print("test222", TPAtest222c, FAtest222c,TPAtest222f, FAtest222f)
 print("test2222", TPAtest2222c, FAtest2222c,TPAtest2222f, FAtest2222f)
+print("test22222", TPAtest22222c, FAtest22222c,TPAtest22222f, FAtest22222f)
+print("test222222", TPAtest222222c, FAtest222222c,TPAtest222222f, FAtest222222f)
+
 
 print("test3", TPAtest3c, FAtest3c, TPAtest3f, FAtest3f)
 print("test33", TPAtest33c, FAtest33c, TPAtest33f, FAtest33f)
 print("test333", TPAtest333c, FAtest333c, TPAtest333f, FAtest333f)
 print("test3333", TPAtest3333c, FAtest3333c, TPAtest3333f, FAtest3333f)
+print("test33333", TPAtest33333c, FAtest33333c, TPAtest33333f, FAtest33333f)
+print("test333333",TPAtest333333c, FAtest333333c,  TPAtest333333f,FAtest333333f)
+print("test3333333",TPAtest3333333c, FAtest3333333c,  TPAtest3333333f,FAtest3333333f)
+print("test3333333",TPAtest33333333c, FAtest33333333c,  TPAtest33333333f,FAtest33333333f)
+
+
 
 print("test4", TPAtest4c, FAtest4c, TPAtest4f, FAtest4f)
 print("test44", TPAtest44c, FAtest44c, TPAtest44f, FAtest44f)
 print("test444", TPAtest444c, FAtest444c, TPAtest444f, FAtest444f)
 print("test4444", TPAtest4444c, FAtest4444c, TPAtest4444f, FAtest4444f)
-
+print("test44444", TPAtest44444c, FAtest44444c, TPAtest44444f, FAtest44444f)
+print("test444444", TPAtest444444c, FAtest444444c, TPAtest444444f, FAtest444444f)
+print("test4444444", TPAtest4444444c, FAtest4444444c, TPAtest4444444f, FAtest4444444f)
+print("test44444444", TPAtest44444444c, FAtest44444444c, TPAtest44444444f, FAtest44444444f)
