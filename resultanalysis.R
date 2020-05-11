@@ -4,72 +4,62 @@ library(ggpubr)
 library(plyr)
 library(beanplot)
 library(tidyr)
+library(lme4)
 
-
-#pilot_short<-read.csv("/Users/admin/Downloads/pilot_results_short.csv")
-#pilot_long<-read.csv("/Users/admin/Downloads/pilot_results_long.csv")
 pilot_long<-read.csv("/Users/admin/Documents/datafiles/pilot2/totalfull1.csv")
+#pilot_long<-read.csv("/Users/admin/Documents/datafiles/pilot1/pilot_results1.csv") #no spaces for this one
 
-#pilot_not<-read.csv("/Users/admin/Downloads/pilot_results_numberoftrial.csv")
-
-
-
-
-pilot_long_log<-subset(pilot_long, select=c(thisResp, numberoftrial, Nsyll, question)) 
+pilot_long_log<-subset(pilot_long, select=c(thisResp, numberoftrial, Nsyll, question, uniqueid, group)) 
 pilot_long_log$numberoftrial<- as.numeric(pilot_long_log$numberoftrial)
 pilot_long_log$thisResp<- factor(pilot_long_log$thisResp)
 pilot_long_log$Nsyll<- as.factor(pilot_long_log$Nsyll)
 
+pilot_long_log$thisresplog <- NA
+pilot_long_log$thisresplog[pilot_long_log$thisResp==' correct'] <- "1"
+pilot_long_log$thisresplog[pilot_long_log$thisResp==' wrong'] <- "0"
+pilot_long_log$thisresplog<- as.factor(pilot_long_log$thisresplog)
+
 
 ###Logistic regression and anova
-model<-glm(formula= thisResp ~ .,  family = binomial(link = "logit"),  data = pilot_long_log)
-anova(model, test="Chisq") 
+pilot_long_log$level <- NA
+pilot_long_log$level[pilot_long_log$question==' verb_word'] <- "word"
+pilot_long_log$level[pilot_long_log$question==' verb_stem'] <- "stem"
+pilot_long_log$level[pilot_long_log$question==' noun_stem'] <- "stem"
+pilot_long_log$level[pilot_long_log$question==' noun_word'] <- "word"
+pilot_long_log$type <- NA
+pilot_long_log$type[pilot_long_log$question==' verb_word'] <- "verb"
+pilot_long_log$type[pilot_long_log$question==' verb_stem'] <- "verb"
+pilot_long_log$type[pilot_long_log$question==' noun_stem'] <- "noun"
+pilot_long_log$type[pilot_long_log$question==' noun_word'] <- "noun"
+
+#pilot_long_log$type<- factor(pilot_long_log$type)
+#pilot_long_log$level<- factor(pilot_long_log$level)
 
 
-###Number of trials
-df2_ <- pilot_long_log %>%  group_by(numberoftrial, thisResp) %>%  tally()  
-df2_<-subset(df2_, thisResp ==  " 'correct'"  )
-df2_$numberoftrial<- factor(df2_$numberoftrial)
-p<-ggplot(df2_, aes(numberoftrial, n)) + geom_bar(stat = "identity")  + ylab("Percentage correct")# to add
-p
-
-
-###Number of syllables
-df3 <- pilot_long_log %>%   group_by(Nsyll, thisResp) %>%  tally() 
-p<-ggplot(df3, aes(Nsyll, n, fill=factor(thisResp))) + geom_bar(stat = "identity")# to add
-p<-p + scale_fill_discrete(name = "Response", labels = c("correct", "wrong")) +scale_fill_manual(values = c("#00AFBB", "#E7B800"))
-p
-
-
-###Number of syllables for noun words and regression
-pilot_words<-subset(pilot_long_log, question == ' noun_word') 
-df4 <- pilot_words %>% group_by(Nsyll, thisResp) %>% tally() 
-p<-ggplot(df4, aes(Nsyll, n, fill=factor(thisResp))) + geom_bar(stat = "identity")
-p<-p + scale_fill_discrete(name = "Response", labels = c("wrong", "correct"))+ ylab(" Number of word trials")+scale_fill_manual(values = c("#00AFBB", "#E7B800"))
-p
-
-model<-glm(formula= thisResp ~ .,  family = binomial(link = "logit"),  data = pilot_words)
-anova(model, test="Chisq") 
-
+model<-glmer(formula= thisresplog ~  type * level * Nsyll  + (1 + type * level * Nsyll|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
+#model<-glm(formula= thisResp ~  question + Nsyll + numberoftrial,  family = binomial(link = "logit"),  data = pilot_long_log)
 
 ##add percentage correct column
-pilot_short<-subset(pilot_long, select=c(uniqueid, thisResp, question ))
-pilot_short1<-subset(pilot_long, select=c(uniqueid, question ))
-pilot_group<-subset(pilot_long, select=c(uniqueid, group ))
+pilot_short<-subset(pilot_long_log, select=c(uniqueid, thisResp, level ))
+pilot_short1<-subset(pilot_long_log, select=c(uniqueid, level ))
+pilot_group<-subset(pilot_long_log, select=c(uniqueid, group ))
 
-pilot_count1 <- pilot_short1 %>%  group_by(uniqueid, question) %>%  count() 
+pilot_count1 <- pilot_short1 %>%  group_by(uniqueid, level) %>%  count() 
 colnames(pilot_count1)[3] <- "total"
-pilot_count <- pilot_short %>%  group_by(uniqueid, question, thisResp) %>%  count() 
+pilot_count <- pilot_short %>%  group_by(uniqueid, level, thisResp) %>%  count() 
 
-df<-merge(x=pilot_count1,y=pilot_count,by=c("uniqueid", "question"),all=TRUE)
-pilot_perc1<-subset(df, thisResp == " 'correct'") 
-pilot_<- transform(pilot_perc1, percentage = freq / total)
+df<-merge(x=pilot_count1,y=pilot_count,by=c("uniqueid", "level"),all=TRUE)
+pilot_perc1<-subset(df, thisResp == "correct") 
+pilot_<- transform(pilot_perc1, percentage = n / total)
 pilot<-unique(merge(x=pilot_,y=pilot_group,by=c("uniqueid"),all=TRUE))
 
 
+
 ########## T-tests 
-pilot_words<-subset(pilot, question == ' verb_word'| question == ' noun_word', select=c(question, percentage, group, uniqueid)) 
-pilot_stems<-subset(pilot, question == ' verb_stem'| question == ' noun_stem', select=c(question, percentage, group, uniqueid)) 
+pilot_words<-subset(pilot, level == 'word', select=c(level, percentage, group, uniqueid)) 
+pilot_stems<-subset(pilot, level == 'stem', select=c(level, percentage, group, uniqueid)) 
+
+#pilot_stems<-subset(pilot, question == ' verb_stem'| question == ' noun_stem', select=c(question, percentage, group, uniqueid)) 
 
 summary(pilot_words)
 shapiro.test(pilot_words$percentage) 
@@ -108,6 +98,51 @@ res_fc
 #####
 
 ggplot(pilot, aes(x=question, y=percentage, group=factor(question)))  + geom_boxplot()+ ylab("Percentage correct")# to add
+
+
+
+
+
+
+###Number of trials
+df2_ <- pilot_long_log %>%  group_by(numberoftrial, thisResp) %>%  tally()  
+df2_<-subset(df2_, thisResp ==  " 'correct'"  )
+df2_$numberoftrial<- factor(df2_$numberoftrial)
+p<-ggplot(df2_, aes(numberoftrial, n)) + geom_bar(stat = "identity")  + ylab("Percentage correct")# to add
+p
+
+
+###Number of syllables
+df3 <- pilot_long_log %>%   group_by(Nsyll, thisResp) %>%  tally() 
+p<-ggplot(df3, aes(Nsyll, n, fill=factor(thisResp))) + geom_bar(stat = "identity")# to add
+p<-p + scale_fill_discrete(name = "Response", labels = c("correct", "wrong")) +scale_fill_manual(values = c("#00AFBB", "#E7B800"))
+p
+
+
+###Number of syllables for noun words and regression
+pilot_words<-subset(pilot_long_log, question == ' noun_word') 
+df4 <- pilot_words %>% group_by(Nsyll, thisResp) %>% tally() 
+p<-ggplot(df4, aes(Nsyll, n, fill=factor(thisResp))) + geom_bar(stat = "identity")
+p<-p + scale_fill_discrete(name = "Response", labels = c("wrong", "correct"))+ ylab(" Number of word trials")+scale_fill_manual(values = c("#00AFBB", "#E7B800"))
+p
+
+model<-glm(formula= thisResp ~ .,  family = binomial(link = "logit"),  data = pilot_words)
+anova(model, test="Chisq") 
+
+##add percentage correct column
+pilot_short<-subset(pilot_long, select=c(uniqueid, thisResp, question ))
+pilot_short1<-subset(pilot_long, select=c(uniqueid, question ))
+pilot_group<-subset(pilot_long, select=c(uniqueid, group ))
+
+pilot_count1 <- pilot_short1 %>%  group_by(uniqueid, question) %>%  count() 
+colnames(pilot_count1)[3] <- "total"
+pilot_count <- pilot_short %>%  group_by(uniqueid, question, thisResp) %>%  count() 
+
+df<-merge(x=pilot_count1,y=pilot_count,by=c("uniqueid", "question"),all=TRUE)
+pilot_perc1<-subset(df, thisResp == " 'correct'") 
+pilot_<- transform(pilot_perc1, percentage = n / total)
+pilot<-unique(merge(x=pilot_,y=pilot_group,by=c("uniqueid"),all=TRUE))
+
 
 
 
