@@ -36,8 +36,7 @@ pilot_long_log$type[pilot_long_log$question==' noun_word'] <- "noun"
 #pilot_long_log$level<- factor(pilot_long_log$level)
 
 
-model<-glmer(formula= thisresplog ~  type * level * Nsyll  + (1 + type * level * Nsyll|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
-#model<-glm(formula= thisResp ~  question + Nsyll + numberoftrial,  family = binomial(link = "logit"),  data = pilot_long_log)
+model<-glmer(formula= thisresplog ~   level + numberoftrial +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
 
 ##add percentage correct column
 pilot_short<-subset(pilot_long_log, select=c(uniqueid, thisResp, level ))
@@ -52,26 +51,6 @@ df<-merge(x=pilot_count1,y=pilot_count,by=c("uniqueid", "level"),all=TRUE)
 pilot_perc1<-subset(df, thisResp == "correct") 
 pilot_<- transform(pilot_perc1, percentage = n / total)
 pilot<-unique(merge(x=pilot_,y=pilot_group,by=c("uniqueid"),all=TRUE))
-
-
-
-########## T-tests 
-pilot_words<-subset(pilot, level == 'word', select=c(level, percentage, group, uniqueid)) 
-pilot_stems<-subset(pilot, level == 'stem', select=c(level, percentage, group, uniqueid)) 
-
-#pilot_stems<-subset(pilot, question == ' verb_stem'| question == ' noun_stem', select=c(question, percentage, group, uniqueid)) 
-
-summary(pilot_words)
-shapiro.test(pilot_words$percentage) 
-resw <- t.test(pilot_words$percentage, mu=0.50,  alternative = "greater")
-resw
-
-shapiro.test(pilot_stems$percentage) 
-ress <- t.test(pilot_stems$percentage, mu=0.50,  alternative = "greater")
-ress
-
-res_f <- t.test(pilot_words$percentage, pilot_stems$percentage, paired = TRUE)
-res_f
 
 
 ####################### T-tests Nouns vs Verbs
@@ -100,10 +79,6 @@ res_fc
 ggplot(pilot, aes(x=question, y=percentage, group=factor(question)))  + geom_boxplot()+ ylab("Percentage correct")# to add
 
 
-
-
-
-
 ###Number of trials
 df2_ <- pilot_long_log %>%  group_by(numberoftrial, thisResp) %>%  tally()  
 df2_<-subset(df2_, thisResp ==  " 'correct'"  )
@@ -118,30 +93,23 @@ p<-ggplot(df3, aes(Nsyll, n, fill=factor(thisResp))) + geom_bar(stat = "identity
 p<-p + scale_fill_discrete(name = "Response", labels = c("correct", "wrong")) +scale_fill_manual(values = c("#00AFBB", "#E7B800"))
 p
 
+########## T-tests 
+pilot_words<-subset(pilot, level == 'word', select=c(level, percentage, group, uniqueid)) 
+pilot_stems<-subset(pilot, level == 'stem', select=c(level, percentage, group, uniqueid)) 
 
-###Number of syllables for noun words and regression
-pilot_words<-subset(pilot_long_log, question == ' noun_word') 
-df4 <- pilot_words %>% group_by(Nsyll, thisResp) %>% tally() 
-p<-ggplot(df4, aes(Nsyll, n, fill=factor(thisResp))) + geom_bar(stat = "identity")
-p<-p + scale_fill_discrete(name = "Response", labels = c("wrong", "correct"))+ ylab(" Number of word trials")+scale_fill_manual(values = c("#00AFBB", "#E7B800"))
-p
+#pilot_stems<-subset(pilot, question == ' verb_stem'| question == ' noun_stem', select=c(question, percentage, group, uniqueid)) 
 
-model<-glm(formula= thisResp ~ .,  family = binomial(link = "logit"),  data = pilot_words)
-anova(model, test="Chisq") 
+summary(pilot_words)
+shapiro.test(pilot_words$percentage) 
+resw <- t.test(pilot_words$percentage, mu=0.50,  alternative = "greater")
+resw
 
-##add percentage correct column
-pilot_short<-subset(pilot_long, select=c(uniqueid, thisResp, question ))
-pilot_short1<-subset(pilot_long, select=c(uniqueid, question ))
-pilot_group<-subset(pilot_long, select=c(uniqueid, group ))
+shapiro.test(pilot_stems$percentage) 
+ress <- t.test(pilot_stems$percentage, mu=0.50,  alternative = "greater")
+ress
 
-pilot_count1 <- pilot_short1 %>%  group_by(uniqueid, question) %>%  count() 
-colnames(pilot_count1)[3] <- "total"
-pilot_count <- pilot_short %>%  group_by(uniqueid, question, thisResp) %>%  count() 
-
-df<-merge(x=pilot_count1,y=pilot_count,by=c("uniqueid", "question"),all=TRUE)
-pilot_perc1<-subset(df, thisResp == " 'correct'") 
-pilot_<- transform(pilot_perc1, percentage = n / total)
-pilot<-unique(merge(x=pilot_,y=pilot_group,by=c("uniqueid"),all=TRUE))
+res_f <- t.test(pilot_words$percentage, pilot_stems$percentage, paired = TRUE)
+res_f
 
 
 
