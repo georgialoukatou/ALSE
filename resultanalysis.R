@@ -20,7 +20,7 @@ pilot_long_log$thisresplog[pilot_long_log$thisResp==' wrong'] <- "0"
 pilot_long_log$thisresplog<- as.factor(pilot_long_log$thisresplog)
 
 
-###Logistic regression and anova
+###Logistic regression 
 pilot_long_log$level <- NA
 pilot_long_log$level[pilot_long_log$question==' verb_word'] <- "word"
 pilot_long_log$level[pilot_long_log$question==' verb_stem'] <- "stem"
