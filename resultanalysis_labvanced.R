@@ -1,13 +1,13 @@
-library(dplyr) 
-library(ggplot2)
-library(ggpubr)
-library(plyr)
-library(beanplot)
-library(tidyr)
+library(tidyverse)
+#library(dplyr) 
+#library(ggplot2)
+#library(ggpubr)
+#library(plyr)
+#library(beanplot)
+#library(tidyr)
 library(lme4)
 
-pilot_long<-read.csv("/Users/lscpuser/Downloads/data_pilotC_4subjects.csv")
-#pilot_long<-read.csv("/Users/admin/Documents/datafiles/pilot1/pilot_results1.csv") #no spaces for this one
+pilot_long<-read_csv("data_pilotC_4subjects.csv")
 
 names(pilot_long)[names(pilot_long) == 'Final'] <- 'thisResp'
 names(pilot_long)[names(pilot_long) == 'Trial_Nr'] <- 'numberoftrial'
@@ -29,19 +29,17 @@ pilot_long <- pilot_long %>%
   mutate(question = ifelse(pilot_long$Trial_Id %in% noun_stem,"noun_stem",question))
 
 
-pilot_long_log<-subset(pilot_long, select=c(thisResp, numberoftrial, Nsyll, question, uniqueid, group)) 
+pilot_long_log<-subset(pilot_long, select=c(thisResp, numberoftrial, question, uniqueid, group)) 
 
 pilot_long_log<-pilot_long_log %>%
   filter(!thisResp == "")
 
 pilot_long_log$numberoftrial<- as.numeric(pilot_long_log$numberoftrial)
 pilot_long_log$thisResp<- factor(pilot_long_log$thisResp)
-#pilot_long_log$Nsyll<- as.factor(pilot_long_log$Nsyll)
 
 pilot_long_log$thisresplog <- NA
-pilot_long_log$thisresplog[pilot_long_log$thisResp=='true'] <- "1"
-pilot_long_log$thisresplog[pilot_long_log$thisResp=='false'] <- "0"
-pilot_long_log$thisresplog<- as.factor(pilot_long_log$thisresplog)
+pilot_long_log$thisresplog[pilot_long_log$thisResp=='TRUE'] <- "1"
+pilot_long_log$thisresplog[pilot_long_log$thisResp=='FALSE'] <- "0"
 
 
 ############################# Logistic regression 
@@ -56,11 +54,9 @@ pilot_long_log$type[pilot_long_log$question=='verb_stem'] <- "verb"
 pilot_long_log$type[pilot_long_log$question=='noun_stem'] <- "noun"
 pilot_long_log$type[pilot_long_log$question=='noun_word'] <- "noun"
 
-#pilot_long_log$type<- factor(pilot_long_log$type)
-#pilot_long_log$level<- factor(pilot_long_log$level)
+pilot_long_log$thisresplog<- as.factor(pilot_long_log$thisresplog)
 
-
-model<-glmer(formula= thisresplog ~   level + numberoftrial +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
+model<-glmer(formula= thisresplog ~ level + numberoftrial +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
 
 ##add percentage correct column
 pilot_short<-subset(pilot_long_log, select=c(uniqueid, thisResp, level ))
@@ -77,18 +73,18 @@ pilot_count <- pilot_short %>%
 
 df<-merge(x=pilot_count1,y=pilot_count,by=c("uniqueid", "level"),all=TRUE)
 pilot_<- df %>%
-  filter(thisResp == "true") %>%
-  mutate(proportion = freq / total)
+  filter(thisResp == "TRUE") %>%
+  mutate(proportion = n / total)
 pilot<-unique(merge(x=pilot_,y=pilot_group,by=c("uniqueid"),all=TRUE))
 
-ggplot(pilot, aes(x=level, y=proportion, group=factor(level)))  + geom_boxplot()+ ylab("Proportion correct")# to add
+ggplot(pilot, aes(x=level, y=proportion, group=factor(level)))+ geom_point()+ ylab("Proportion correct")# to add
 
 
 ######################## Number of trials
 df2_ <- pilot_long_log %>%  
   group_by(numberoftrial, thisResp) %>%  
   tally()  %>%
-  filter(thisResp=="true")
+  filter(thisResp=="TRUE")
 
 df2_$numberoftrial<- factor(df2_$numberoftrial)
 
@@ -123,28 +119,87 @@ res_f
 ########################
 ####################### T-tests Nouns vs Verbs
 
+pilot_count_nv <- pilot_long_log %>%  
+  group_by(uniqueid, question) %>%  
+  count() 
+colnames(pilot_count_nv)[3] <- "total"
+pilot_count1_nv <- pilot_long_log %>%  
+  group_by(uniqueid, question, thisResp) %>%  
+  count() 
 
-pilot_nouns<-subset(pilot, question == 'noun_stem'| question == 'noun_word', select=c(question, percentage, group, uniqueid)) 
-pilot_verbs<-subset(pilot, question == 'verb_stem'| question == 'verb_word', select=c(question, percentage, group, uniqueid)) 
+df_nv<-merge(x=pilot_count_nv,y=pilot_count1_nv,by=c("uniqueid", "question"),all=TRUE)
+pilot_nv<- df_nv %>%
+  filter(thisResp == "TRUE") %>%
+  mutate(proportion = n / total)
+pilot_nv<-unique(merge(x=pilot_nv,y=pilot_group,by=c("uniqueid"),all=TRUE))
+
+pilot_nouns<-subset(pilot_nv, question == 'noun_stem'| question == 'noun_word', select=c(question, proportion, group, uniqueid)) 
+pilot_verbs<-subset(pilot_nv, question == 'verb_stem'| question == 'verb_word', select=c(question, proportion, group, uniqueid)) 
 #group_by(pilot_nouns, question) %>%summarise(count = n(),mean = mean(percentage, na.rm = TRUE),sd = sd(percentage, na.rm = TRUE))
 
 
-dn <- with(pilot_nouns, percentage[question == "noun_word"] - percentage[question == "noun_stem"])
-dv <- with(pilot_verbs, percentage[question == "verb_word"] - percentage[question == "verb_stem"])
+dn <- with(pilot_nouns, proportion[question == "noun_word"] - proportion[question == "noun_stem"])
+dv <- with(pilot_verbs, proportion[question == "verb_word"] - proportion[question == "verb_stem"])
 shapiro.test(dn) 
 shapiro.test(dv) 
 
 
-resn <- t.test(percentage ~ question, data = pilot_nouns, paired = TRUE)
-resv <- t.test(percentage ~ question, data = pilot_verbs, paired = TRUE)
+resn <- t.test(proportion ~ question, data = pilot_nouns, paired = TRUE)
+resv <- t.test(proportion ~ question, data = pilot_verbs, paired = TRUE)
 resn
 resv
 
-res_fc <- t.test(pilot_nouns$percentage, pilot_verbs$percentage, paired = TRUE)
+res_fc <- t.test(pilot_nouns$proportion, pilot_verbs$proportion, paired = TRUE)
 res_fc
 
 ##### exclusion criteria
+#4 or more wrong answers in test questions (Attention_1_animal_type vs attention1_test) OR less than 1 sd below group mean
+trial_att<- c(5, 19, 34, 48, 64, 77, 92, 107)
 
-#x  or more wrong answers in test questions (Attention_1_animal_type vs attention1_test)
+
+pilot_log_atte <- pilot_long %>%
+  select(contains("Attention"), uniqueid, numberoftrial )%>%
+  select(-(contains("Time"))) %>%
+  filter(numberoftrial %in% trial_att)
+
+new<- pilot_log_atte %>%
+  pivot_longer(
+    cols = contains("Animal"),
+    names_to = "AttentionQ",
+    values_to = "answer" ) %>%
+  pivot_longer(
+    cols = contains("test"),
+    names_to = "AttentionA",
+    values_to = "question" ) %>%
+  na.omit
+
+new$answer <- new$answer %>%
+  str_replace( "un ", "") 
+
+new$question <- new$question %>%
+  str_replace( " Is Correct", "") 
+
+new<- new %>%
+  mutate(eval = ifelse(answer == question, "TRUE", "FALSE"))
+
+attention <- new %>% 
+  group_by(eval, uniqueid) %>%
+  summarise(n=n(),
+  m=n/8) %>%
+  filter(eval=="TRUE") %>%
+  mutate(pass = ifelse(m < 0.5, "EXCLUDE", "INCLUDE") )
+
+attention1 <- attention %>%
+  summarise(mean_=mean(m),
+            sd_=sd(m)) %>%
+  mutate(threshold = mean_ - sd_) %>%
+  left_join(attention) %>%
+  mutate(pass = ifelse(m < threshold, "EXCLUDE", pass) )
+  
+  
 #next video command for train
 # decision time for test
+
+Attention questions: those who answer incorrectly half of the times or less than  one sd below the group mean
+
+For decision time: trials that are over 2 sd over the participant mean 
