@@ -56,7 +56,18 @@ pilot_long_log$type[pilot_long_log$question=='noun_word'] <- "noun"
 
 pilot_long_log$thisresplog<- as.factor(pilot_long_log$thisresplog)
 
-model<-glmer(formula= thisresplog ~ level + numberoftrial +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
+pilot_long_log$level <- relevel(pilot_long_log$level,"word")
+model<-glmer(formula= thisresplog ~ level +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
+summary(model)
+
+pilot_long_log$level <- relevel(pilot_long_log$level,"stem")
+model<-glmer(formula= thisresplog ~ level +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
+summary(model)
+
+# explor. logistic analysis for word type
+model<-glmer(formula= thisresplog ~ level + type +(1 + level + numberoftrial|uniqueid),  control = glmerControl(optimizer = "bobyqa"), family = binomial(link = "logit"),  data = pilot_long_log)
+summary(model)
+
 
 ##add percentage correct column
 pilot_short<-subset(pilot_long_log, select=c(uniqueid, thisResp, level ))
